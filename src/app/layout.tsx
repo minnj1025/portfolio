@@ -47,16 +47,13 @@ export default function RootLayout({
         <footer className="rule mt-32">
           <div className="mx-auto max-w-5xl px-6 py-12">
             <p className="eyebrow">Contact</p>
-            <div className="mt-4 flex flex-wrap items-baseline gap-x-8 gap-y-3">
+            <div className="mt-4">
               <a
                 href={`mailto:${profile.contact.email}`}
                 className="text-lg hover:text-accent"
               >
                 {profile.contact.email}
               </a>
-              <span className="text-sm text-muted-dim">
-                {profile.lab}
-              </span>
             </div>
             <p className="mt-10 font-mono text-xs text-muted-dim">
               © {new Date().getFullYear()} {profile.nameEn}
