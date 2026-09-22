@@ -34,7 +34,7 @@ export const education: ResumeEntry[] = [
 
 export const researchExperience: ResumeEntry[] = [
   {
-    period: "2026.01 ~ 현재",
+    period: "2026.01 ~ 2026.08",
     title: "대학원생 연구원",
     org: "조선대학교 지능형데이터처리 연구실",
     points: [
