@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { profile } from "@/content/profile";
 import { papers } from "@/content/papers";
 import {
@@ -22,22 +23,36 @@ export const metadata: Metadata = {
 export default function Resume() {
   return (
     <div className="mx-auto max-w-3xl px-6 pt-20 pb-8">
-      <header>
-        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-          {profile.nameKo}
-          <span className="ml-3 font-mono text-base text-muted-dim">
-            {profile.nameEn}
-          </span>
-        </h1>
-        <p className="mt-3 text-muted">{profile.role}</p>
-        <p className="mt-1 text-sm text-muted-dim">
-          {profile.lab} · {profile.advisor}
-        </p>
-        <p className="mt-4 font-mono text-sm">
-          <a href={`mailto:${profile.contact.email}`} className="text-accent hover:underline">
-            {profile.contact.email}
-          </a>
-        </p>
+      <header className="flex flex-col-reverse gap-8 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+            {profile.nameKo}
+            <span className="ml-3 font-mono text-base text-muted-dim">
+              {profile.nameEn}
+            </span>
+          </h1>
+          <p className="mt-3 text-muted">{profile.role}</p>
+          <p className="mt-1 text-sm text-muted-dim">
+            {profile.lab} · {profile.advisor}
+          </p>
+          <p className="mt-4 font-mono text-sm">
+            <a
+              href={`mailto:${profile.contact.email}`}
+              className="text-accent hover:underline"
+            >
+              {profile.contact.email}
+            </a>
+          </p>
+        </div>
+
+        <Image
+          src="/profile.jpg"
+          alt={`${profile.nameKo} 프로필 사진`}
+          width={472}
+          height={630}
+          priority
+          className="h-40 w-30 shrink-0 rounded-lg border border-line object-cover sm:h-48 sm:w-36"
+        />
       </header>
 
       <Block title="학력">
