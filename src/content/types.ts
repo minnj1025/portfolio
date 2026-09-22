@@ -1,5 +1,15 @@
 export type PaperStatus = "published" | "under-review";
 
+export type Figure = {
+  /** /public 기준 경로. 비어 있으면 자리만 잡는 플레이스홀더가 나옵니다. */
+  src: string;
+  alt: string;
+  caption: string;
+  /** 레이아웃 흔들림을 막기 위한 실제 픽셀 크기 */
+  width?: number;
+  height?: number;
+};
+
 export type Paper = {
   slug: string;
   /** 약칭. 카드와 목차에 쓰입니다. 예: PRISM-MTL */
@@ -27,7 +37,7 @@ export type Paper = {
   metrics: { label: string; value: string }[];
   /** 결과 서술 */
   outcome: string;
-  figures: { src: string; alt: string; caption: string }[];
+  figures: Figure[];
   /** 대표 논문이면 메인 상단에 크게 노출 */
   featured?: boolean;
 };
@@ -47,6 +57,6 @@ export type Project = {
   outcome: string;
   stack: string[];
   links: { label: string; href: string }[];
-  figures: { src: string; alt: string; caption: string }[];
+  figures: Figure[];
   featured?: boolean;
 };

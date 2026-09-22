@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import type { Figure } from "@/content/types";
 
 export function Section({
   id,
@@ -73,7 +75,7 @@ export function CaseBody({
   approach: { name: string; detail: string }[];
   metrics: { label: string; value: string }[];
   outcome: string;
-  figures: { src: string; alt: string; caption: string }[];
+  figures: Figure[];
 }) {
   return (
     <div className="space-y-16">
@@ -116,25 +118,23 @@ function Block({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
-/** 그림이 아직 없으면 자리만 잡아둔 플레이스홀더를 보여줍니다. */
-export function FigureStrip({
-  figures,
-}: {
-  figures: { src: string; alt: string; caption: string }[];
-}) {
+/** 논문 그림. 아직 파일이 없으면 자리만 잡아둔 플레이스홀더를 보여줍니다. */
+export function FigureStrip({ figures }: { figures: Figure[] }) {
   if (figures.length === 0) return null;
   return (
     <div>
       <p className="eyebrow">그림</p>
-      <div className="mt-4 grid gap-6 sm:grid-cols-2">
+      <div className="mt-4 space-y-10">
         {figures.map((f) => (
           <figure key={f.caption}>
             {f.src ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
+              <Image
                 src={f.src}
                 alt={f.alt}
-                className="w-full rounded-lg border border-line bg-white"
+                width={f.width ?? 1600}
+                height={f.height ?? 900}
+                className="h-auto w-full rounded-lg border border-line bg-white p-3"
+                sizes="(min-width: 768px) 768px, 100vw"
               />
             ) : (
               <div className="flex aspect-[4/3] items-center justify-center rounded-lg border border-dashed border-line bg-ink-soft">
@@ -143,7 +143,7 @@ export function FigureStrip({
                 </span>
               </div>
             )}
-            <figcaption className="mt-2 font-mono text-xs text-muted-dim">
+            <figcaption className="mt-3 text-sm leading-relaxed text-muted-dim">
               {f.caption}
             </figcaption>
           </figure>

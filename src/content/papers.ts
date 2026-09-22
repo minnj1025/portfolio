@@ -49,12 +49,28 @@ export const papers: Paper[] = [
     outcome:
       "공개 AIDE 데이터베이스에서 네 태스크 통합 인식 기준 mAcc 86.25% ± 0.35로 state-of-the-art를 달성했습니다. 5-seed 반복 실험으로 성능의 안정성까지 함께 보였습니다.",
     figures: [
-      // TODO: 논문 Figure 추출 후 교체
-      { src: "", alt: "PRISM-MTL 전체 구조도", caption: "PRISM-MTL 전체 아키텍처" },
       {
-        src: "",
-        alt: "TSMF 모듈 구조",
-        caption: "TSMF: 태스크 토큰 기반 선택적 모달리티 융합",
+        src: "/figures/prism-mtl-architecture.png",
+        alt: "PRISM-MTL 전체 구조도. 멀티모달 전처리, HSA-Net 기반 인코더, TSMF 모듈을 거쳐 DER·DBR·TCR·VBR 네 태스크를 예측한다.",
+        caption:
+          "전체 아키텍처 — 5개 모달리티가 HSA-Net·Token-SE 인코더를 거쳐 TSMF에서 태스크별로 선택 융합됩니다.",
+        width: 1600,
+        height: 707,
+      },
+      {
+        src: "/figures/prism-mtl-tsmf.png",
+        alt: "TSMF 모듈 구조. 학습 가능한 태스크 토큰을 query로, 5개 모달리티 토큰을 key와 value로 쓰는 멀티헤드 cross-attention 구조.",
+        caption:
+          "TSMF — 태스크 토큰이 query, 모달리티 토큰이 key·value로 들어가 태스크마다 필요한 모달리티에 집중합니다.",
+        width: 1600,
+        height: 570,
+      },
+      {
+        src: "/figures/prism-mtl-results.png",
+        alt: "AIDE 데이터베이스에서 PRISM-MTL과 기존 방법들의 태스크별 정확도·F1-score를 비교한 레이더 차트.",
+        caption: "AIDE 벤치마크 비교 — 태스크별 정확도와 F1-score",
+        width: 1600,
+        height: 927,
       },
     ],
     featured: true,
@@ -111,11 +127,27 @@ export const papers: Paper[] = [
     outcome:
       "공개 데이터 3종 모두에서 기존 방법을 상회했습니다. 이 연구를 바탕으로 국내 특허(10-2025-0107230)를 공동발명자로 출원했습니다.",
     figures: [
-      { src: "", alt: "STFTransNet 전체 구조도", caption: "STFTransNet 전체 아키텍처" },
       {
-        src: "",
-        alt: "Two-stream cross attention 구조",
-        caption: "얼굴·행동 two-stream cross attention",
+        src: "/figures/stftransnet-architecture.png",
+        alt: "STFTransNet 전체 구조도. 얼굴 랜드마크 추출, RCN 기반 two-stream cross-attention, TCN 시간 특징 추출, 앙상블 분류로 이어지는 흐름.",
+        caption:
+          "전체 아키텍처 — 얼굴·행동 two-stream을 cross-attention으로 묶고 TCN으로 시간 축을 더합니다.",
+        width: 1600,
+        height: 988,
+      },
+      {
+        src: "/figures/stftransnet-cross-attention.png",
+        alt: "Cross-attention 구조도. 얼굴 스트림과 행동 스트림이 서로를 참조하는 구조.",
+        caption: "Cross-attention — 한쪽이 가려져도 다른 스트림이 보완합니다.",
+        width: 1600,
+        height: 785,
+      },
+      {
+        src: "/figures/stftransnet-results.png",
+        alt: "제안 STFTransNet과 전이학습 모델의 정확도, F1-score, 파라미터 수, FLOPs 비교 그래프.",
+        caption: "성능 비교 — 정확도·F1-score와 파라미터·FLOPs를 함께 비교",
+        width: 1600,
+        height: 1103,
       },
     ],
     featured: true,
@@ -171,8 +203,21 @@ export const papers: Paper[] = [
     outcome:
       "독립 인코더 구조 대비 파라미터 59%, GFLOPs 61.1%를 줄이면서 mAcc는 오히려 0.11%p 향상시켰습니다. 정확도를 내주지 않고 효율을 얻는 trade-off 지점을 확인했습니다.",
     figures: [
-      { src: "", alt: "MUSE-MTL 전체 구조도", caption: "MUSE 공유 인코더 구조" },
-      { src: "", alt: "효율 비교 그래프", caption: "파라미터·GFLOPs 대비 정확도 비교" },
+      {
+        src: "/figures/muse-mtl-architecture.png",
+        alt: "MUSE-MTL 전체 구조도. PS-MSBN, StaG-LoRA, ETB를 적용한 공유 멀티모달 인코더와 TSMF 멀티태스크 헤드.",
+        caption:
+          "전체 아키텍처 — 좌측 PS-MSBN·StaG-LoRA, 중앙 공유 인코더, 우측 ETB와 TSMF",
+        width: 991,
+        height: 580,
+      },
+      {
+        src: "/figures/muse-mtl-results.png",
+        alt: "AIDE 데이터셋에서 MUSE-MTL과 기존 방법들의 태스크별 정확도와 mAcc를 비교한 레이더 차트.",
+        caption: "AIDE 비교 — mAcc 86.38%로 독립 인코더 구조를 넘어섭니다.",
+        width: 401,
+        height: 468,
+      },
     ],
   },
   {
@@ -222,11 +267,20 @@ export const papers: Paper[] = [
     outcome:
       "AIDE 벤치마크에서 5회 반복 기준 mAcc 85.84% ± 0.75로 state-of-the-art를 갱신했습니다. MobileNetV3-Small 백본에서도 3.42M 파라미터로 82.97%를 유지해, 정확도와 효율의 trade-off가 양호함을 보였습니다.",
     figures: [
-      { src: "", alt: "TRACE-MTL 패러다임 비교", caption: "기존 방식과 TRACE-MTL의 비교" },
       {
-        src: "",
-        alt: "TRACE 인과 전파 구조",
-        caption: "인과 지연창 기반 태스크 간 증거 전파",
+        src: "/figures/trace-mtl-architecture.png",
+        alt: "TRACE-MTL 전체 구조도. VISTA의 RIGM과 HSA-Net, MoVE의 expert routing, TRACE의 cross-task causal propagation으로 구성된다.",
+        caption:
+          "전체 아키텍처 — (A) VISTA 증거 추출, (B) MoVE 전문가 라우팅, (C) TRACE 인과 전파",
+        width: 1207,
+        height: 622,
+      },
+      {
+        src: "/figures/trace-mtl-results.png",
+        alt: "AIDE DB에서 TRACE-MTL과 state-of-the-art 방법들의 태스크별 정확도와 F1-score를 비교한 레이더 차트.",
+        caption: "AIDE 비교 — HSA-Net 백본과 MobileNetV3-Small 백본 결과를 함께 표시",
+        width: 651,
+        height: 366,
       },
     ],
   },
@@ -276,8 +330,21 @@ export const papers: Paper[] = [
     outcome:
       "모든 모달리티를 쓰지 않고 평균 3.76개만으로 mAcc 85.40% ± 0.61을 유지하면서, branch 비용 22.22%와 실측 latency 15.52%를 줄였습니다. latency는 CUDA 동기화 기반으로 측정했습니다.",
     figures: [
-      { src: "", alt: "COVA-MTL 동적 추론 흐름", caption: "ACVE → SSR → 선택적 인코딩 흐름" },
-      { src: "", alt: "비용 대비 정확도 그래프", caption: "모달리티 수 대비 정확도·지연시간" },
+      {
+        src: "/figures/cova-mtl-architecture.png",
+        alt: "COVA-MTL 전체 구조도. ACVE가 반사실 가치를 추정하고, SSR이 최소 부분집합을 고르며, SCML이 부분집합 조건 학습을 담당한다.",
+        caption:
+          "전체 아키텍처 — (a) ACVE 반사실 가치 추정, (b) SSR 최소 부분집합 선택, (c) SCML 부분집합 조건 학습",
+        width: 1165,
+        height: 483,
+      },
+      {
+        src: "/figures/cova-mtl-paradigm.png",
+        alt: "멀티모달 멀티태스크 주행 인식에서 모달리티 선택 방식들을 비교한 그림.",
+        caption: "모달리티 선택 패러다임 비교 — 기존 방식과 COVA-MTL의 차이",
+        width: 1062,
+        height: 578,
+      },
     ],
   },
   {
@@ -321,8 +388,21 @@ export const papers: Paper[] = [
     outcome:
       "NTHU-DDD 공개 DB에서 기존 네트워크 모델 대비 1.03%p 향상을 확인했습니다. 첫 주제 연구로, 이후 STFTransNet으로 이어지는 출발점이 된 작업입니다.",
     figures: [
-      { src: "", alt: "SERN 구조도", caption: "SERN 전체 구조" },
-      { src: "", alt: "라벨 재정의 분포", caption: "EAR/MAR 기반 3단계 라벨 재정의" },
+      {
+        src: "/figures/sern-labeling.png",
+        alt: "운전자 데이터를 Dlib으로 분석하고 Drowsy·Pre Drowsy·Non Drowsy 3단계로 재라벨링한 뒤 SERN으로 분류하는 전체 흐름도.",
+        caption:
+          "전체 흐름 — 기존 2단계 라벨을 데이터 분석 후 3단계(졸음/전조/비졸음)로 재정의합니다.",
+        width: 1134,
+        height: 285,
+      },
+      {
+        src: "/figures/sern-architecture.png",
+        alt: "SERN 모델 구조도. ResNet의 residual block에 Squeeze-and-Excitation 블록을 결합한 SE Residual Block 구성.",
+        caption: "SERN 구조 — ResNet18의 residual block에 SE 블록을 결합해 채널 중요도를 재조정",
+        width: 540,
+        height: 621,
+      },
     ],
   },
 ];

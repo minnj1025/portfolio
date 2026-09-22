@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { profile } from "@/content/profile";
 import { publishedPapers, underReviewPapers } from "@/content/papers";
 import { projects } from "@/content/projects";
@@ -81,34 +82,51 @@ function PaperGroup({ label, papers }: { label: string; papers: Paper[] }) {
 
 function PaperCard({ paper }: { paper: Paper }) {
   const headline = paper.metrics[0];
+  const thumb = paper.figures.find((f) => f.src);
+
   return (
     <li>
       <Link
         href={`/research/${paper.slug}`}
-        className="group flex h-full flex-col rounded-lg border border-line bg-ink-card p-6 transition-colors hover:border-accent-dim"
+        className="group flex h-full flex-col overflow-hidden rounded-lg border border-line bg-ink-card transition-colors hover:border-accent-dim"
       >
-        <div className="flex items-baseline justify-between gap-3">
-          <span className="font-mono text-sm text-accent">{paper.shortTitle}</span>
-          <span className="font-mono text-[0.625rem] text-muted-dim">
-            {paper.year} · {paper.role}
-          </span>
-        </div>
+        {thumb && (
+          <div className="border-b border-line bg-white px-4 py-3">
+            <Image
+              src={thumb.src}
+              alt={thumb.alt}
+              width={thumb.width ?? 1600}
+              height={thumb.height ?? 900}
+              className="h-28 w-full object-contain"
+              sizes="(min-width: 640px) 400px, 100vw"
+            />
+          </div>
+        )}
 
-        <h4 className="mt-3 leading-snug font-medium">{paper.koreanTitle}</h4>
-        <p className="mt-2 text-xs leading-relaxed text-muted-dim">{paper.title}</p>
+        <div className="flex flex-1 flex-col p-6">
+          <div className="flex items-baseline justify-between gap-3">
+            <span className="font-mono text-sm text-accent">{paper.shortTitle}</span>
+            <span className="font-mono text-[0.625rem] text-muted-dim">
+              {paper.year} · {paper.role}
+            </span>
+          </div>
 
-        <p className="mt-4 text-sm text-muted">{paper.venueLabel}</p>
+          <h4 className="mt-3 leading-snug font-medium">{paper.koreanTitle}</h4>
+          <p className="mt-2 text-xs leading-relaxed text-muted-dim">{paper.title}</p>
 
-        <div className="mt-auto pt-6">
-          {headline && (
-            <p className="font-mono text-xs text-muted">
-              {headline.label}{" "}
-              <span className="text-accent">{headline.value}</span>
-            </p>
-          )}
-          <span className="mt-3 inline-block font-mono text-xs text-muted-dim group-hover:text-accent">
-            자세히 →
-          </span>
+          <p className="mt-4 text-sm text-muted">{paper.venueLabel}</p>
+
+          <div className="mt-auto pt-6">
+            {headline && (
+              <p className="font-mono text-xs text-muted">
+                {headline.label}{" "}
+                <span className="text-accent">{headline.value}</span>
+              </p>
+            )}
+            <span className="mt-3 inline-block font-mono text-xs text-muted-dim group-hover:text-accent">
+              자세히 →
+            </span>
+          </div>
         </div>
       </Link>
     </li>
