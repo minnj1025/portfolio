@@ -2,25 +2,40 @@ import type { Project } from "./types";
 
 export const projects: Project[] = [
   {
-    slug: "bible-project",
-    name: "성경 프로젝트", // TODO: 정식 이름으로 교체
-    tagline: "TODO: 한 줄 소개를 채워주세요.",
+    slug: "ieum",
+    name: "이음",
+    tagline: "오늘 쓴 일기에서 지금 필요한 성경 구절을 찾아 이어주는 앱",
     period: "2026 ~ 진행 중",
     context: "개인 프로젝트",
     role: "기획 · 개발 전담",
     status: "개발 중",
     problem:
-      "TODO: 어떤 불편이나 결핍에서 출발했는지 적어주세요. 기존에 있던 방식이 왜 부족했는지가 핵심입니다.",
+      "성경을 펼쳤을 때 어디를 읽어야 할지 모르는 것이 시작점이었습니다. 검색은 단어가 맞아떨어져야 찾아지고, 통독표는 오늘 내 상황과 무관하게 순서대로 흘러갑니다. 정작 필요한 순간에 맞는 구절을 만나기가 어려웠습니다.",
     approach: [
-      { name: "TODO", detail: "TODO: 어떻게 풀었는지 단계별로." },
-      { name: "TODO", detail: "TODO" },
+      {
+        name: "일기를 입구로 삼기",
+        detail:
+          "구절을 검색하게 하는 대신 오늘의 일기와 다이어리를 입구로 놓았습니다. 사용자가 자기 상태를 검색어로 번역할 필요가 없어집니다.",
+      },
+      {
+        name: "의미 기반 구절 매칭",
+        detail:
+          "작성한 글의 맥락과 감정을 읽어 관련된 성경 구절을 매칭합니다. 단어가 겹치지 않아도 닿을 수 있게 하는 것이 핵심입니다.",
+      },
+      {
+        name: "LLM 해설 제공",
+        detail:
+          "매칭된 구절이 왜 지금 이 글과 연결되는지를 LLM이 함께 설명해, 구절만 던져주고 끝나지 않도록 했습니다.",
+      },
     ],
     metrics: [
-      { label: "TODO", value: "—" },
-      { label: "TODO", value: "—" },
+      { label: "입력", value: "일기 · 다이어리" },
+      { label: "핵심", value: "의미 기반 매칭" },
+      { label: "상태", value: "개발 중" },
     ],
-    outcome: "TODO: 지금 어디까지 왔고 무엇이 달라졌는지.",
-    stack: [], // TODO
+    outcome:
+      "TODO: 현재 어디까지 구현했는지, 사용자 수나 반응 같은 수치가 있으면 채워주세요.",
+    stack: [], // TODO: 실제 스택 (앱 프레임워크 / 임베딩·모델 / 백엔드)
     links: [],
     figures: [],
     featured: true,

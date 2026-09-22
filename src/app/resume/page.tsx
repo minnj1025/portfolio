@@ -139,9 +139,12 @@ export default function Resume() {
 
 function Block({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="rule mt-16 pt-10">
-      <h2 className="eyebrow">{title}</h2>
-      <div className="mt-6">{children}</div>
+    <section className="mt-20">
+      <h2 className="flex items-center gap-4 text-xl font-semibold tracking-tight sm:text-2xl">
+        <span className="h-5 w-1 rounded-full bg-accent" aria-hidden />
+        {title}
+      </h2>
+      <div className="rule mt-6 pt-8">{children}</div>
     </section>
   );
 }

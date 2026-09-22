@@ -11,8 +11,8 @@ export const papers: Paper[] = [
     role: "제1저자",
     status: "published",
     venueLabel: "Mathematics (SCIE) 게재",
-    citation: "Mathematics, 2026, 14(17), 2812",
-    doi: "", // TODO: DOI 확인 후 입력
+    citation: "Mathematics, 2026, 14(15), 2812",
+    doi: "10.3390/math14152812",
     year: 2026,
     keywords: [
       "Multi-Task Learning",
@@ -63,24 +63,24 @@ export const papers: Paper[] = [
     slug: "stftransnet",
     shortTitle: "STFTransNet",
     title:
-      "STFTransNet: A Transformer-Based Spatial-Temporal Fusion Network for Enhanced Multimodal Driver State Detection System",
-    koreanTitle: "얼굴이 가려지고 조명이 바뀌어도 버티는 운전자 상태 인식",
-    authors: ["Minjun Kim", "Witold Pedrycz", "Gyuho Choi"],
+      "STFTransNet: A Transformer Based Spatial Temporal Fusion Network for Enhanced Multimodal Driver Inattention State Recognition System",
+    koreanTitle: "얼굴이 가려지고 조명이 바뀌어도 버티는 운전자 부주의 상태 인식",
+    authors: ["Minjun Kim", "Gyuho Choi"],
     role: "제1저자",
     status: "published",
     venueLabel: "Sensors (SCIE) 게재",
     citation: "Sensors, 2025, 25(18), 5819",
-    doi: "", // TODO: DOI 확인 후 입력
+    doi: "10.3390/s25185819",
     year: 2025,
     keywords: [
-      "Driver State Recognition",
+      "Driver Inattention State Recognition",
       "Partial Occlusion",
       "Cross-Attention",
       "TCN",
       "Multimodal Fusion",
     ],
     problem:
-      "운전자가 액세서리를 착용해 얼굴 일부가 가려지거나, 주행 중 조명 변화로 빛이 산란해 순간 해상도가 떨어지면 단일 특징 기반 검출은 성능이 무너집니다. 얼굴만 보는 접근으로는 실제 주행 환경을 감당할 수 없었습니다.",
+      "운전자가 액세서리를 착용해 얼굴 특징이 부분적으로 가려지거나, 차량 내외부 조명 변화로 빛이 산란해 순간 해상도가 떨어지면 기존 졸음 검출 시스템은 상태를 인식하지 못합니다. 얼굴만 보는 접근으로는 실제 주행 환경의 졸음과 부주의를 함께 감당할 수 없었습니다.",
     approach: [
       {
         name: "MediaPipe Face Mesh 기반 특징 추출",
@@ -103,9 +103,9 @@ export const papers: Paper[] = [
       },
     ],
     metrics: [
-      { label: "NTHU-DDD", value: "+4.85%p vs VBFLLFA" },
-      { label: "State Farm", value: "+3.48%p vs InceptionV3+HRNN" },
-      { label: "YawDD", value: "+0.05%p vs VBFLLFA" },
+      { label: "NTHU-DDD", value: "+4.56%p vs VBFLLFA" },
+      { label: "StateFarm", value: "+3.48%p vs InceptionV3+HRNN" },
+      { label: "YawDD", value: "+3.78%p vs VBFLLFA" },
       { label: "연계 성과", value: "국내 특허 출원" },
     ],
     outcome:
@@ -285,12 +285,12 @@ export const papers: Paper[] = [
     shortTitle: "SERN",
     title:
       "A Drowsiness Detection System Using Multiple Driver Behavior Features Based on SERN",
-    koreanTitle: "다중 행동 특징과 채널 재조정을 이용한 졸음 검출",
+    koreanTitle: "SERN 기반 운전자의 다중 행동 특징을 이용한 졸음 검출 시스템",
     authors: ["Minjun Kim", "Wonyeol Kim", "Gyuho Choi"],
     role: "제1저자",
     status: "published",
-    venueLabel: "한국정보처리학회 논문지 (KCI) 게재",
-    citation: "2024년 6월",
+    venueLabel: "한국차세대컴퓨팅학회 논문지 (KCI) 게재",
+    citation: "한국차세대컴퓨팅학회 논문지, 2024, 20(3)",
     doi: "10.23019/kingpc.20.3.202406.005",
     year: 2024,
     keywords: ["Squeeze-and-Excitation", "ResNet", "Data Relabeling", "Occlusion"],
