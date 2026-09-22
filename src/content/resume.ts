@@ -57,10 +57,14 @@ export const researchExperience: ResumeEntry[] = [
 
 export const internships: ResumeEntry[] = [
   {
-    period: "TODO", // TODO: 기간 확인
-    title: "인턴",
+    period: "2025.01 ~ 2025.02",
+    title: "인턴 · Data솔루션팀",
     org: "미래에셋증권",
-    detail: "TODO: 담당 업무와 성과를 채워주세요.",
+    detail: "생성형 LLM을 이용한 주식테마 및 연관 종목 제공 서비스 (3인 팀)",
+    points: [
+      // TODO: 담당 파트와 결과를 한두 줄 추가하면 더 좋습니다.
+      "생성형 LLM으로 주식 테마를 도출하고 연관 종목을 연결하는 서비스를 설계·구현",
+    ],
   },
 ];
 
@@ -97,10 +101,10 @@ export const awards: Award[] = [
     note: "Talktalk deSign — 실시간 수어 번역 시스템",
   },
   {
-    date: "2024.10", // TODO: 상장 파일명은 2025로 되어 있어 연도 확인 필요
-    name: "미래에셋증권 AI·데이터 페스티벌 대상",
+    date: "2024.10",
+    name: "2024 미래에셋증권 AI·데이터 페스티벌 대상",
     org: "미래에셋증권",
-    note: "336개 참가팀 중 대상",
+    note: "336개 참가팀 중 대상 · 퍼스널LLM 팀",
   },
   {
     date: "2023.11",
@@ -113,9 +117,10 @@ export const awards: Award[] = [
 export const patents = [
   {
     number: "10-2025-0107230",
-    title: "TODO: 특허 명칭 확인", // TODO: 출원서에서 명칭 확인
-    status: "출원",
-    role: "공동발명자",
+    title:
+      "트랜스포머 기반 시공간 융합 네트워크를 이용한 향상된 다중 모달 운전자 상태 감지 시스템 및 방법",
+    status: "출원 (2025.08.05) · 출원인 조선대학교산학협력단",
+    role: "공동발명자 (최규호, 김민준)",
     year: 2025,
   },
 ];
@@ -129,7 +134,7 @@ export type DomesticPaper = {
 
 export const domesticPapers: DomesticPaper[] = [
   {
-    venue: "제38회 영상처리 및 이해에 관한 워크샵 (IPIU)", // TODO: 연도 확인
+    venue: "제38회 영상처리 및 이해에 관한 워크샵 (IPIU)",
     year: "2026",
     title:
       "MTCANet: 운전자 부주의 상태 인식을 위한 Multimodal Two-stream Cross Attention Network",
@@ -186,7 +191,8 @@ export const skills = [
       "CLOVA OCR / Summary",
       "STT / TTS",
       "Raspberry Pi",
-      "Next.js", // TODO: 실제 사용 스택으로 정리
+      "FastAPI",
+      "FAISS",
     ],
   },
 ];

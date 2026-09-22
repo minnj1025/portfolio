@@ -149,7 +149,7 @@ export const projects: Project[] = [
     name: "주가 변동 원인 분석 알림",
     tagline: "가격이 움직인 사실이 아니라, 움직인 이유를 알려주는 파이프라인",
     period: "2024",
-    context: "3인 팀", // TODO: 대회 연도 확인 (자소서 2024.10.16 / 상장 파일명 2025)
+    context: "3인 팀 (퍼스널LLM)",
     role: "LLM 기반 주가변동 원인 분석 파트",
     status: "완료",
     problem:
