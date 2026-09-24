@@ -49,10 +49,11 @@ export const projects: Project[] = [
     stack: [
       "FastAPI",
       "FAISS",
-      "sentence-transformers",
+      "sentence-transformers (ko-sroberta)",
+      "PyTorch",
       "BM25 · RRF",
       "Ollama (gemma3:12b)",
-      "Anthropic API",
+      "Anthropic API (Claude)",
       "SQLite",
       "Tailscale Funnel",
     ],

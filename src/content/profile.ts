@@ -30,8 +30,9 @@ export const profile = {
   contact: {
     email: "ryan6768@gmail.com",
     github: "https://github.com/minnj1025",
-    scholar: "", // TODO: Google Scholar 프로필 주소
-    orcid: "", // TODO
-    linkedin: "", // TODO
+    // 주소를 채우면 푸터에 자동으로 링크가 붙습니다.
+    scholar: "",
+    orcid: "",
+    linkedin: "",
   },
 } as const;
