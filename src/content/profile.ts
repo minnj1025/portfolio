@@ -28,9 +28,9 @@ export const profile = {
     },
   ],
   contact: {
-    email: "ryan6768@gmail.com", // TODO: 확인 — 학교 메일(20223379@chosun.ac.kr)을 쓸지 결정
-    github: "", // TODO
-    scholar: "", // TODO
+    email: "ryan6768@gmail.com",
+    github: "https://github.com/minnj1025",
+    scholar: "", // TODO: Google Scholar 프로필 주소
     orcid: "", // TODO
     linkedin: "", // TODO
   },

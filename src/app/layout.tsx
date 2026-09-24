@@ -17,6 +17,16 @@ const navItems = [
   { href: "/resume", label: "이력서" },
 ];
 
+/** 주소가 채워진 것만 푸터에 노출합니다. */
+const externalLinks = (
+  [
+    { label: "GitHub", href: profile.contact.github },
+    { label: "Google Scholar", href: profile.contact.scholar },
+    { label: "ORCID", href: profile.contact.orcid },
+    { label: "LinkedIn", href: profile.contact.linkedin },
+  ] as const
+).filter((l) => l.href);
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -54,6 +64,20 @@ export default function RootLayout({
               >
                 {profile.contact.email}
               </a>
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+              {externalLinks.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-mono text-sm text-muted transition-colors hover:text-accent"
+                >
+                  {l.label} ↗
+                </a>
+              ))}
             </div>
             <p className="mt-10 font-mono text-xs text-muted-dim">
               © {new Date().getFullYear()} {profile.nameEn}

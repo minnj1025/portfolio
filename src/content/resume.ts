@@ -199,7 +199,7 @@ export const skills = [
 
 export const activities: ResumeEntry[] = [
   {
-    period: "TODO",
+    period: "2024학년도",
     title: "초대 학생회장",
     org: "조선대학교 AI소프트웨어학부 (신설 학과)",
     points: [
@@ -208,7 +208,7 @@ export const activities: ResumeEntry[] = [
     ],
   },
   {
-    period: "TODO",
+    period: "2025.12 ~ 2026.08",
     title: "연구실 실장",
     org: "조선대학교 지능형데이터처리 연구실",
   },
