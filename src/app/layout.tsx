@@ -21,7 +21,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" data-scroll-behavior="smooth">
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
         <header className="sticky top-0 z-50 border-b border-line-soft bg-ink/80 backdrop-blur">
           <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
