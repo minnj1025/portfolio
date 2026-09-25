@@ -100,9 +100,33 @@ export const projects: Project[] = [
     ],
     outcome:
       "2025 조선대학교 종합학술대회에서 금상을 수상했습니다.",
-    stack: ["HyperCLOVA X", "CLOVA OCR", "Vector DB", "RAG"],
+    stack: [
+      "HyperCLOVA X",
+      "LoRA",
+      "RAG",
+      "Vector DB",
+      "Embedding",
+      "CLOVA OCR",
+    ],
     links: [],
-    figures: [],
+    figures: [
+      {
+        src: "/figures/lexai-system.png",
+        alt: "LexAI 시스템 기능 구조도. 사용자 판별 모듈이 일반 사용자와 전문 사용자를 나누고, 각각 법률 문서 분석·전문가 탐색과 판례 리서치·사건 문서 저장으로 분기한다.",
+        caption:
+          "시스템 구조 — 사용자 판별 모듈이 일반 사용자와 법률인을 나눠 서로 다른 기능으로 보냅니다.",
+        width: 1600,
+        height: 900,
+      },
+      {
+        src: "/figures/lexai-chatbot.png",
+        alt: "LexAI ChatBot 구조도. 민사·형사·행정법 원천 데이터를 판례·해석례·결정례·심결례는 임베딩 후 Vector DB에 넣어 RAG로, 법령은 LoRA 학습 데이터로 나눠 처리한다.",
+        caption:
+          "ChatBot 구조 — 판례·해석례는 RAG로, 법령은 LoRA 학습으로 나눠 붙였습니다.",
+        width: 1600,
+        height: 900,
+      },
+    ],
     featured: true,
   },
   {
@@ -142,7 +166,24 @@ export const projects: Project[] = [
       "KSL-77 77개 클래스·20인 데이터에서 94.73%를 달성하고, 임베디드 보드에서 end-to-end 실시간 동작까지 시연했습니다. 2024 조선대학교 종합학술대회 금상.",
     stack: ["MediaPipe", "ST-GCN", "PyTorch", "Raspberry Pi 4", "Google TTS"],
     links: [],
-    figures: [],
+    figures: [
+      {
+        src: "/figures/talktalk-flow.png",
+        alt: "Talktalk deSign 전체 흐름도. 카메라로 수어 영상을 취득하고 MediaPipe로 골격 특징점을 추출해 그래프로 전처리한 뒤, ST-GCN으로 번역하고 Google TTS로 음성화한다.",
+        caption:
+          "전체 흐름 — 영상 취득에서 골격 추출, ST-GCN 번역, 음성 출력까지",
+        width: 1600,
+        height: 900,
+      },
+      {
+        src: "/figures/talktalk-stgcn.png",
+        alt: "골격 좌표를 노드와 엣지를 가진 그래프로 전처리한 뒤 GCN으로 공간 관계를, TCN으로 시간 변화를 학습하는 ST-GCN 구조도.",
+        caption:
+          "ST-GCN — 관절을 노드, 연결을 엣지로 두고 GCN이 공간을, TCN이 시간을 맡습니다.",
+        width: 1600,
+        height: 900,
+      },
+    ],
     featured: true,
   },
   {
@@ -230,8 +271,9 @@ export const projects: Project[] = [
     ],
     metrics: [
       { label: "수상", value: "대상 (336개 팀 중)" },
-      { label: "중복 억제 임계값", value: "코사인 유사도 0.35" },
-      { label: "역할", value: "원인 분석 파트 담당" },
+      { label: "분석 시간", value: "약 70% 감소" },
+      { label: "중복 억제", value: "코사인 유사도 기반" },
+      { label: "역할", value: "원인 분석 파트" },
     ],
     outcome:
       "미래에셋증권 AI·데이터 페스티벌에서 336개 참가팀 중 대상을 수상했습니다. 새로운 서비스를 만들기보다 기존 서비스에 AI를 연계해 사용자 경험을 개선하는 쪽에 초점을 뒀습니다.",
@@ -243,7 +285,23 @@ export const projects: Project[] = [
       "BoW · Cosine Similarity",
     ],
     links: [],
-    figures: [],
+    figures: [
+      {
+        src: "/figures/stock-flow.png",
+        alt: "서비스 절차 흐름도. 상승률·하락률·거래량 상위 100 종목을 실시간 탐색하고, 뉴스를 크롤링·요약한 뒤 HyperCLOVA X로 원인을 분석해 투자자 보유 종목과 매칭하고 알림을 보낸다.",
+        caption:
+          "서비스 절차 — 급변 종목 탐지에서 뉴스 요약, 원인 분석, 보유 종목 매칭, 알림 전송까지",
+        width: 1600,
+        height: 900,
+      },
+      {
+        src: "/figures/stock-llm.png",
+        alt: "요약된 뉴스를 HyperCLOVA X에 넣어 기업별 주가 변동 원인을 분석하고 DB에 저장하는 과정.",
+        caption: "원인 분석 — 기업별로 요약된 기사를 묶어 변동 원인을 생성합니다.",
+        width: 1600,
+        height: 900,
+      },
+    ],
   },
   {
     slug: "teachers",
@@ -279,9 +337,34 @@ export const projects: Project[] = [
     ],
     outcome:
       "제한된 해커톤 일정 안에서 기획부터 프로토타입 구현, 발표까지 전 과정을 수행해 2025 SW중심대학 호남권 LLM 해커톤 경진대회 우수상을 받았습니다.",
-    stack: ["LLM", "STT", "TTS", "음성 인터페이스"],
+    stack: [
+      "HyperCLOVA X (HCX)",
+      "CLOVA Speech Recognition",
+      "CLOVA Voice (TTS)",
+      "CLOVA Segmentation",
+      "RAG · Vector DB",
+      "DuckDuckGo Search",
+      "NAVER Cloud",
+    ],
     links: [],
-    figures: [],
+    figures: [
+      {
+        src: "/figures/teachers-architecture.png",
+        alt: "티처스 아키텍처. 데이터 처리 계층에서 강의 자료를 임베딩해 Vector DB에 넣고, 실시간 학습 계층에서 CLOVA Voice와 음성 인식을 거쳐 HyperCLOVA X와 대화한다.",
+        caption:
+          "전체 아키텍처 — 위쪽이 자료 처리, 아래쪽이 실시간 음성 대화 경로입니다.",
+        width: 1536,
+        height: 864,
+      },
+      {
+        src: "/figures/teachers-preprocess.png",
+        alt: "데이터 전처리 흐름. PDF·Text·Wav·Search 입력을 받아 음성은 CLOVA Speech Recognition으로 텍스트화하고, 자료가 없으면 웹 검색으로 수집한 뒤 CLOVA Segmentation으로 의미 단위 분할해 임베딩한다.",
+        caption:
+          "데이터 전처리 — 음성은 STT로, 자료가 없으면 웹 검색으로 채우고, 의미 단위로 잘라 색인합니다.",
+        width: 1536,
+        height: 864,
+      },
+    ],
   },
 ];
 
