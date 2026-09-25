@@ -3,6 +3,7 @@ import type { Paper } from "./types";
 export const papers: Paper[] = [
   {
     slug: "prism-mtl",
+    axis: "정확도 — 태스크 간 간섭 해소",
     shortTitle: "PRISM-MTL",
     title:
       "PRISM-MTL: Inter-Modal Selective Multi-Task Learning for Assistive Driving Perception",
@@ -77,6 +78,7 @@ export const papers: Paper[] = [
   },
   {
     slug: "stftransnet",
+    axis: "강건성 — 가려짐과 조명 변화",
     shortTitle: "STFTransNet",
     title:
       "STFTransNet: A Transformer Based Spatial Temporal Fusion Network for Enhanced Multimodal Driver Inattention State Recognition System",
@@ -154,6 +156,7 @@ export const papers: Paper[] = [
   },
   {
     slug: "muse-mtl",
+    axis: "효율 — 모달리티 확장 비용",
     shortTitle: "MUSE-MTL",
     title:
       "MUSE-MTL: Modality-Unified Stage-wise Multi-Task Learning for Efficient Multimodal Driving Perception",
@@ -222,6 +225,7 @@ export const papers: Paper[] = [
   },
   {
     slug: "trace-mtl",
+    axis: "인과 — 태스크 간 시간 의존성",
     shortTitle: "TRACE-MTL",
     title:
       "TRACE-MTL: Temporal Relation-Aware Causal Evidence Propagation for Multi-Task Assistive Driving Perception",
@@ -286,6 +290,7 @@ export const papers: Paper[] = [
   },
   {
     slug: "cova-mtl",
+    axis: "실차 적용성 — 비용과 센서 결손",
     shortTitle: "COVA-MTL",
     title:
       "COVA-MTL: Counterfactual Value-Aware Modality Acquisition for Efficient and Robust Multi-Task Driving Perception",
@@ -349,6 +354,7 @@ export const papers: Paper[] = [
   },
   {
     slug: "sern",
+    axis: "데이터 — 라벨 정의",
     shortTitle: "SERN",
     title:
       "A Drowsiness Detection System Using Multiple Driver Behavior Features Based on SERN",

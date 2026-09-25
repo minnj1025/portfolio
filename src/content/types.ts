@@ -21,6 +21,8 @@ export type Paper = {
   authors: string[];
   /** 저자 기여 표기. 예: 제1저자 */
   role: string;
+  /** 이 연구가 맡은 축. 목록에서 논문이 아니라 과제로 읽히게 합니다. */
+  axis: string;
   status: PaperStatus;
   /** 화면에 노출할 게재/심사 상태 문구 */
   venueLabel: string;

@@ -58,7 +58,30 @@ export const projects: Project[] = [
       "Tailscale Funnel",
     ],
     links: [],
-    figures: [],
+    figures: [
+      {
+        src: "/figures/ieum-diary.png",
+        alt: "이음 일기 작성 화면. 하루를 적는 입력창 아래에 '말씀 찾기' 버튼이 있다.",
+        caption: "하루를 적는 화면 — 검색어가 아니라 그날의 일을 그대로 씁니다.",
+        width: 780,
+        height: 486,
+      },
+      {
+        src: "/figures/ieum-passage.png",
+        alt: "일기를 제출하자 마가복음 2장 18-22절이 절 단위로 줄바꿈되어 표시된 화면.",
+        caption: "찾아온 말씀 — 본문은 DB에서 조회해 절 단위로 보여줍니다.",
+        width: 780,
+        height: 1392,
+      },
+      {
+        src: "/figures/ieum-meditation.png",
+        alt: "묵상 1/3 화면. 본문과 사용자가 쓴 상황을 함께 엮은 질문이 제시되고 답변 입력창이 있다.",
+        caption:
+          "묵상 질문 — 답을 주지 않고, 본문과 그날의 상황을 엮어 되묻습니다.",
+        width: 780,
+        height: 692,
+      },
+    ],
     featured: true,
   },
   {
@@ -322,7 +345,7 @@ export const projects: Project[] = [
     name: "티처스",
     tagline: "내가 올린 자료로 바로 수업이 시작되는 AI 음성 학습 서비스",
     period: "2025",
-    context: "4인 팀 · 팀장",
+    context: "5인 팀 · 팀장",
     role: "기획 · 프로토타입 구현 · 발표",
     status: "완료",
     problem:
@@ -346,7 +369,7 @@ export const projects: Project[] = [
     ],
     metrics: [
       { label: "수상", value: "호남권 LLM 해커톤 우수상" },
-      { label: "역할", value: "4인 팀 팀장" },
+      { label: "역할", value: "5인 팀 팀장" },
       { label: "범위", value: "기획 → 프로토타입 → 발표" },
     ],
     outcome:
