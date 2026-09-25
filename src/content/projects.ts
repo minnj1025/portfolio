@@ -4,7 +4,7 @@ export const projects: Project[] = [
   {
     slug: "ieum",
     name: "이음",
-    tagline: "자유 서술에서 질의를 만들고, 표면 유사도 너머의 본문을 찾는 검색 파이프라인",
+    tagline: "하루의 기록을 말씀으로 잇고, 그 기록이 쌓여 신앙 자산이 되는 앱",
     period: "2026.05 ~ 진행 중",
     context: "개인 프로젝트",
     role: "기획 · 설계 · 개발 · 평가 전담",
