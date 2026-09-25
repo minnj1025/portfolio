@@ -8,7 +8,18 @@ export type Figure = {
   /** 레이아웃 흔들림을 막기 위한 실제 픽셀 크기 */
   width?: number;
   height?: number;
+  /** .mp4일 때 목록과 첫 프레임에 쓰는 정지 이미지 */
+  poster?: string;
 };
+
+export function isVideo(figure: Figure) {
+  return figure.src.endsWith(".mp4");
+}
+
+/** 목록 카드에 쓸 정지 이미지. 동영상이면 포스터를 대신 씁니다. */
+export function stillImage(figure: Figure) {
+  return isVideo(figure) ? figure.poster : figure.src;
+}
 
 export type Paper = {
   slug: string;

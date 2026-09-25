@@ -327,14 +327,23 @@ export const papers: Paper[] = [
       },
     ],
     metrics: [
-      { label: "AIDE mAcc", value: "85.40% ± 0.61" },
-      { label: "사용 모달리티", value: "평균 3.76개" },
-      { label: "branch 비용", value: "-22.22%" },
-      { label: "실측 latency", value: "-15.52%" },
+      { label: "AIDE mAcc", value: "85.41% ± 0.58" },
+      { label: "사용 모달리티", value: "평균 4.30 / 5" },
+      { label: "branch 비용", value: "-18.1%" },
+      { label: "전체 사용 대비", value: "mAcc -0.4%p" },
     ],
     outcome:
-      "모든 모달리티를 쓰지 않고 평균 3.76개만으로 mAcc 85.40% ± 0.61을 유지하면서, branch 비용 22.22%와 실측 latency 15.52%를 줄였습니다. latency는 CUDA 동기화 기반으로 측정했습니다.",
+      "5-seed 기준 mAcc 85.41% ± 0.58로, 모든 모달리티를 항상 쓰는 구성(85.79%) 대비 0.4%p만 내주면서 branch 비용을 평균 18.1% 줄였습니다. 아래 영상은 seed 42로 테스트셋 580클립을 실제로 돌린 결과이며, 클립마다 선택이 달라지는 것을 그대로 담았습니다. 센서가 빠진 조건에서는 절감폭이 더 커져, 외부 시점이 없을 때 branch 비용이 42% 내려갑니다.",
     figures: [
+      {
+        src: "/figures/cova-mtl-selection.mp4",
+        poster: "/figures/cova-mtl-selection-poster.png",
+        alt: "AIDE 테스트 클립 4개를 차례로 재생하며, 클립마다 ACVE가 모달리티별 상대 손실을 추정하고 SSR이 최소 부분집합을 골라 ENCODE와 SKIP으로 나누는 과정을 보여주는 영상.",
+        caption:
+          "실제 동작 — 클립마다 선택이 달라집니다. 카디널리티 5 → 2 → 3 → 4 순서이며, seed 42로 테스트셋을 실제로 돌린 결과입니다. AIDE 피험자 보호를 위해 얼굴과 상반신은 흐리게 처리했습니다.",
+        width: 1280,
+        height: 720,
+      },
       {
         src: "/figures/cova-mtl-architecture.png",
         alt: "COVA-MTL 전체 구조도. ACVE가 반사실 가치를 추정하고, SSR이 최소 부분집합을 고르며, SCML이 부분집합 조건 학습을 담당한다.",

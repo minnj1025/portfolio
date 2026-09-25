@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import type { Figure } from "@/content/types";
+import { isVideo, type Figure } from "@/content/types";
 
 export function Section({
   id,
@@ -127,7 +127,21 @@ export function FigureStrip({ figures }: { figures: Figure[] }) {
       <div className="mt-4 space-y-10">
         {figures.map((f) => (
           <figure key={f.caption}>
-            {f.src ? (
+            {f.src && isVideo(f) ? (
+              // 자동 재생 · 무음 · 반복. 모바일에서도 전체화면으로 튀지 않게 합니다.
+              <video
+                src={f.src}
+                poster={f.poster}
+                width={f.width ?? 1280}
+                height={f.height ?? 720}
+                autoPlay
+                muted
+                loop
+                playsInline
+                aria-label={f.alt}
+                className="h-auto w-full rounded-lg border border-line"
+              />
+            ) : f.src ? (
               <Image
                 src={f.src}
                 alt={f.alt}

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { profile } from "@/content/profile";
 import { publishedPapers, underReviewPapers } from "@/content/papers";
 import { projects } from "@/content/projects";
-import type { Paper, Project } from "@/content/types";
+import { stillImage, type Paper, type Project } from "@/content/types";
 import { MetricGrid, TagList } from "@/components/ui";
 
 export default function Home() {
@@ -208,8 +208,17 @@ function BlockShell({
   );
 }
 
+/** 목록에서는 정지 이미지만 쓴다. 동영상은 상세 페이지에서 재생된다. */
+function listFigure(figures: Paper["figures"]) {
+  for (const figure of figures) {
+    const still = stillImage(figure);
+    if (still) return { ...figure, src: still };
+  }
+  return undefined;
+}
+
 function PaperBlock({ paper, no }: { paper: Paper; no: number }) {
-  const figure = paper.figures.find((f) => f.src);
+  const figure = listFigure(paper.figures);
   const achievement = [paper.venueLabel, paper.citation].filter(Boolean).join(" · ");
   return (
     <BlockShell
@@ -231,7 +240,7 @@ function PaperBlock({ paper, no }: { paper: Paper; no: number }) {
 }
 
 function ProjectBlock({ project, no }: { project: Project; no: number }) {
-  const figure = project.figures.find((f) => f.src);
+  const figure = listFigure(project.figures);
   return (
     <BlockShell
       no={no}
