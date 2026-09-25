@@ -116,7 +116,7 @@ function BlockShell({
   sub?: string;
   figure?: { src: string; alt: string; width?: number; height?: number };
   problem: string;
-  approach: { name: string; detail: string }[];
+  approach: { name: string; tag?: string; detail: string }[];
   metrics: { label: string; value: string }[];
   outcome: string;
   achievement?: string;
@@ -190,7 +190,14 @@ function BlockShell({
                 <span className="font-mono text-xs text-muted-dim">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span>{a.name}</span>
+                <span>
+                  {a.name}
+                  {a.tag && (
+                    <span className="ml-2 font-mono text-xs text-accent-dim">
+                      {a.tag}
+                    </span>
+                  )}
+                </span>
               </li>
             ))}
           </ol>

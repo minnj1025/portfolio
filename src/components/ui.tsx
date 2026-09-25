@@ -72,7 +72,7 @@ export function CaseBody({
   figures,
 }: {
   problem: string;
-  approach: { name: string; detail: string }[];
+  approach: { name: string; tag?: string; detail: string }[];
   metrics: { label: string; value: string }[];
   outcome: string;
   figures: Figure[];
@@ -91,7 +91,14 @@ export function CaseBody({
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div>
-                <h4 className="font-medium">{a.name}</h4>
+                <h4 className="font-medium">
+                  {a.name}
+                  {a.tag && (
+                    <span className="ml-2 rounded border border-line px-1.5 py-0.5 font-mono text-xs text-accent-dim">
+                      {a.tag}
+                    </span>
+                  )}
+                </h4>
                 <p className="mt-2 leading-loose text-muted">{a.detail}</p>
               </div>
             </li>

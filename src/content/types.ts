@@ -44,8 +44,11 @@ export type Paper = {
   keywords: string[];
   /** 무엇이 문제였는가 */
   problem: string;
-  /** 어떻게 풀었는가 */
-  approach: { name: string; detail: string }[];
+  /**
+   * 어떻게 풀었는가. name은 컴포넌트 이름이 아니라 한 일을 적습니다.
+   * 논문에 붙은 약어는 tag로 따로 답니다.
+   */
+  approach: { name: string; tag?: string; detail: string }[];
   /** 정량 결과. 카드 하단 지표 줄에도 쓰입니다. */
   metrics: { label: string; value: string }[];
   /** 결과 서술 */
@@ -65,7 +68,7 @@ export type Project = {
   role: string;
   status: "운영 중" | "개발 중" | "완료";
   problem: string;
-  approach: { name: string; detail: string }[];
+  approach: { name: string; tag?: string; detail: string }[];
   metrics: { label: string; value: string }[];
   outcome: string;
   stack: string[];
