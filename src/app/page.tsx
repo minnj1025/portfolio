@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { profile } from "@/content/profile";
-import { publishedPapers, underReviewPapers } from "@/content/papers";
+import { papers } from "@/content/papers";
 import { projects } from "@/content/projects";
 import { stillImage, type Paper, type Project } from "@/content/types";
 import { MetricGrid, TagList } from "@/components/ui";
@@ -18,7 +18,7 @@ export default function Home() {
         lead="운전자와 주행 상황을 함께 인식하는 문제를 정확도 · 효율 · 인과 · 실차 적용성의 네 축으로 나눠 다뤄왔습니다. 각 논문은 그 축 하나씩을 맡고 있습니다."
       >
         <div className="space-y-20">
-          {[...publishedPapers, ...underReviewPapers].map((p, i) => (
+          {papers.map((p, i) => (
             <PaperBlock key={p.slug} paper={p} no={i + 1} />
           ))}
         </div>
