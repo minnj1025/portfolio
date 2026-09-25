@@ -111,20 +111,27 @@ export const projects: Project[] = [
     links: [],
     figures: [
       {
-        src: "/figures/lexai-system.png",
-        alt: "LexAI 시스템 기능 구조도. 사용자 판별 모듈이 일반 사용자와 전문 사용자를 나누고, 각각 법률 문서 분석·전문가 탐색과 판례 리서치·사건 문서 저장으로 분기한다.",
+        src: "/figures/lexai-ui.png",
+        alt: "LexAI ChatBot 실제 화면. 사용자가 법률 질문을 입력하면 근거 조항과 함께 답변이 표시되고, 우측에 이전 대화 목록이 보인다.",
+        caption: "실제 화면 — 질문에 대한 답변과 근거를 함께 보여줍니다.",
+        width: 1520,
+        height: 700,
+      },
+      {
+        src: "/figures/lexai-eval.png",
+        alt: "변호사 시험 데이터 기준 모델별 평균 점수 표. GPT-4-Turbo+RAG 61.6, GPT-4-Turbo 58.3, Claude 3 Opus 54.7, Gemini 1.5 Pro 52.9, HyperCLOVA X 50.8, 학습을 거친 HyperCLOVA X 51.3, Baseline 25.1.",
         caption:
-          "시스템 구조 — 사용자 판별 모듈이 일반 사용자와 법률인을 나눠 서로 다른 기능으로 보냅니다.",
-        width: 1600,
-        height: 900,
+          "평가 결과 — 학습으로 50.8에서 51.3까지 올렸지만 RAG를 붙인 GPT-4-Turbo(61.6)에는 미치지 못했습니다.",
+        width: 1520,
+        height: 700,
       },
       {
         src: "/figures/lexai-chatbot.png",
         alt: "LexAI ChatBot 구조도. 민사·형사·행정법 원천 데이터를 판례·해석례·결정례·심결례는 임베딩 후 Vector DB에 넣어 RAG로, 법령은 LoRA 학습 데이터로 나눠 처리한다.",
         caption:
-          "ChatBot 구조 — 판례·해석례는 RAG로, 법령은 LoRA 학습으로 나눠 붙였습니다.",
-        width: 1600,
-        height: 900,
+          "구조 — 판례·해석례는 RAG로, 법령은 LoRA 학습으로 나눠 붙였습니다.",
+        width: 1520,
+        height: 700,
       },
     ],
     featured: true,
@@ -176,12 +183,18 @@ export const projects: Project[] = [
         height: 900,
       },
       {
-        src: "/figures/talktalk-stgcn.png",
-        alt: "골격 좌표를 노드와 엣지를 가진 그래프로 전처리한 뒤 GCN으로 공간 관계를, TCN으로 시간 변화를 학습하는 ST-GCN 구조도.",
-        caption:
-          "ST-GCN — 관절을 노드, 연결을 엣지로 두고 GCN이 공간을, TCN이 시간을 맡습니다.",
-        width: 1600,
-        height: 900,
+        src: "/figures/talktalk-output.png",
+        alt: "ST-GCN이 골격 그래프에서 '안녕?', '사랑', '나비'로 추론한 결과가 TTS를 거쳐 음성으로 변환되는 과정.",
+        caption: "실제 출력 — 골격 그래프에서 단어를 추론하고 음성으로 내보냅니다.",
+        width: 1065,
+        height: 820,
+      },
+      {
+        src: "/figures/talktalk-setup.png",
+        alt: "실험 조건 표. KSL-77 데이터셋 77개 클래스 20인, 8:2 분할, ST-GCN, MediaPipe Pose·Hand로 47개 키포인트(Pose 5, Hand 42), 배치 32, 300 에폭, 학습률 0.001, Adam, CrossEntropyLoss. 정확도 94.73%.",
+        caption: "실험 조건과 결과 — 47개 키포인트, 300 에폭, 정확도 94.73%",
+        width: 1065,
+        height: 820,
       },
     ],
     featured: true,
@@ -287,19 +300,20 @@ export const projects: Project[] = [
     links: [],
     figures: [
       {
+        src: "/figures/stock-example.png",
+        alt: "실제 생성된 알림 예시. 상승 종목의 5분 차트에 알림이 나간 시각이 표시되고, 옆에 중국 경기 부양책으로 ETF가 상승했다는 원인 분석 문장이 붙어 있다.",
+        caption:
+          "실제 알림 — 가격이 움직인 시점과 그 이유가 함께 나갑니다.",
+        width: 1548,
+        height: 685,
+      },
+      {
         src: "/figures/stock-flow.png",
         alt: "서비스 절차 흐름도. 상승률·하락률·거래량 상위 100 종목을 실시간 탐색하고, 뉴스를 크롤링·요약한 뒤 HyperCLOVA X로 원인을 분석해 투자자 보유 종목과 매칭하고 알림을 보낸다.",
         caption:
           "서비스 절차 — 급변 종목 탐지에서 뉴스 요약, 원인 분석, 보유 종목 매칭, 알림 전송까지",
-        width: 1600,
-        height: 900,
-      },
-      {
-        src: "/figures/stock-llm.png",
-        alt: "요약된 뉴스를 HyperCLOVA X에 넣어 기업별 주가 변동 원인을 분석하고 DB에 저장하는 과정.",
-        caption: "원인 분석 — 기업별로 요약된 기사를 묶어 변동 원인을 생성합니다.",
-        width: 1600,
-        height: 900,
+        width: 1548,
+        height: 685,
       },
     ],
   },
@@ -349,20 +363,20 @@ export const projects: Project[] = [
     links: [],
     figures: [
       {
+        src: "/figures/teachers-ui.png",
+        alt: "티처스 메인 화면. 여러 강사 페르소나가 카드로 나열되고, 선택한 페르소나의 음성 미리듣기와 소개를 확인한 뒤 강의를 시작할 수 있다.",
+        caption:
+          "실제 화면 — 페르소나를 고르고 목소리를 미리 들은 뒤 강의를 시작합니다.",
+        width: 1452,
+        height: 585,
+      },
+      {
         src: "/figures/teachers-architecture.png",
         alt: "티처스 아키텍처. 데이터 처리 계층에서 강의 자료를 임베딩해 Vector DB에 넣고, 실시간 학습 계층에서 CLOVA Voice와 음성 인식을 거쳐 HyperCLOVA X와 대화한다.",
         caption:
           "전체 아키텍처 — 위쪽이 자료 처리, 아래쪽이 실시간 음성 대화 경로입니다.",
-        width: 1536,
-        height: 864,
-      },
-      {
-        src: "/figures/teachers-preprocess.png",
-        alt: "데이터 전처리 흐름. PDF·Text·Wav·Search 입력을 받아 음성은 CLOVA Speech Recognition으로 텍스트화하고, 자료가 없으면 웹 검색으로 수집한 뒤 CLOVA Segmentation으로 의미 단위 분할해 임베딩한다.",
-        caption:
-          "데이터 전처리 — 음성은 STT로, 자료가 없으면 웹 검색으로 채우고, 의미 단위로 잘라 색인합니다.",
-        width: 1536,
-        height: 864,
+        width: 1452,
+        height: 620,
       },
     ],
   },
