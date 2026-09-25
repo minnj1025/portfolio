@@ -10,6 +10,8 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <Disciplines />
+      <Pillars />
 
       <Section
         id="research"
@@ -50,13 +52,53 @@ function Hero() {
         {profile.tagline}
       </h1>
       <p className="mt-8 max-w-2xl leading-loose text-muted">{profile.intro}</p>
+    </section>
+  );
+}
 
-      <div className="mt-16 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-3">
+function Disciplines() {
+  // 이음매가 보이지 않도록 같은 목록을 두 번 깝니다.
+  const loop = [...profile.disciplines, ...profile.disciplines];
+  return (
+    <section className="rule border-b border-line-soft py-6">
+      <p className="eyebrow mx-auto max-w-5xl px-6">다루는 것</p>
+      <div className="marquee mt-4">
+        <div className="marquee-track">
+          {loop.map((item, i) => (
+            <span
+              key={`${item}-${i}`}
+              aria-hidden={i >= profile.disciplines.length}
+              className="flex shrink-0 items-center gap-8 pr-8 font-mono text-sm tracking-[0.18em] text-muted-dim"
+            >
+              {item}
+              <span className="text-accent-dim">/</span>
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Pillars() {
+  return (
+    <section className="mx-auto max-w-5xl px-6 pt-16">
+      <div className="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-3">
         {profile.pillars.map((p) => (
-          <div key={p.no} className="bg-ink-card p-6">
+          <div key={p.no} className="flex flex-col bg-ink-card p-6">
             <span className="font-mono text-xs text-accent-dim">{p.no}</span>
-            <h3 className="mt-3 font-medium">{p.title}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted">{p.detail}</p>
+            <h3 className="mt-3 text-lg font-medium tracking-tight">{p.title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted">{p.detail}</p>
+            <ul className="mt-5 space-y-1.5 border-t border-line-soft pt-4">
+              {p.evidence.map((e) => (
+                <li
+                  key={e}
+                  className="font-mono text-xs leading-relaxed text-muted-dim"
+                >
+                  {e}
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>

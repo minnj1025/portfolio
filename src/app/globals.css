@@ -50,6 +50,43 @@ body {
   border-top: 1px solid var(--color-line-soft);
 }
 
+/* 다루는 영역을 가로로 흘려보내는 띠. 양 끝은 배경으로 사라집니다. */
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 9%,
+    #000 91%,
+    transparent
+  );
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 42s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* 목록을 두 벌 깔고 한 벌만큼 밀어 이음매를 없앱니다. */
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+  .marquee {
+    overflow-x: auto;
+  }
+}
+
 /* 눌러야 한다는 게 보이는 버튼. 기본은 테두리만, 올리면 채워집니다. */
 .btn {
   display: inline-flex;
