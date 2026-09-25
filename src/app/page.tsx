@@ -152,11 +152,11 @@ function BlockShell({
           <TagList items={tags.slice(0, 5)} />
         </div>
 
-        <Link
-          href={href}
-          className="mt-4 inline-block font-mono text-xs text-muted transition-colors hover:text-accent"
-        >
-          자세히 보기 →
+        <Link href={href} className="btn mt-5">
+          자세히 보기
+          <span className="arrow" aria-hidden>
+            →
+          </span>
         </Link>
       </div>
 
@@ -184,20 +184,18 @@ function BlockShell({
 
         <div className="mt-6">
           <p className="eyebrow">접근</p>
-          <ol className="mt-2 grid gap-x-6 gap-y-2 sm:grid-cols-2">
+          <ol className="mt-3 space-y-4">
             {approach.map((a, i) => (
-              <li key={a.name} className="flex gap-2 text-sm">
-                <span className="font-mono text-xs text-muted-dim">
+              <li key={a.name} className="grid gap-1 sm:grid-cols-[2rem_1fr]">
+                <span className="font-mono text-xs text-muted-dim sm:pt-1">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span>
-                  {a.name}
-                  {a.tag && (
-                    <span className="ml-2 font-mono text-xs text-accent-dim">
-                      {a.tag}
-                    </span>
-                  )}
-                </span>
+                <div>
+                  <p className="font-medium">{a.name}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-muted">
+                    {clamp(a.detail, 2)}
+                  </p>
+                </div>
               </li>
             ))}
           </ol>

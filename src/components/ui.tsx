@@ -176,11 +176,9 @@ export function FigureStrip({ figures }: { figures: Figure[] }) {
 
 export function BackLink({ href, label }: { href: string; label: string }) {
   return (
-    <Link
-      href={href}
-      className="font-mono text-xs text-muted-dim transition-colors hover:text-accent"
-    >
-      ← {label}
+    <Link href={href} className="btn">
+      <span aria-hidden>←</span>
+      {label}
     </Link>
   );
 }

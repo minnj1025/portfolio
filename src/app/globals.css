@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #07070a;
-  --color-ink-soft: #0d0d12;
-  --color-ink-card: #121218;
-  --color-line: #232430;
-  --color-line-soft: #1a1b24;
-  --color-paper: #ededf0;
-  --color-muted: #8b8c9a;
-  --color-muted-dim: #62636f;
+  /* 완전한 검정 대신 살짝 푸른 기를 둡니다. 화면에서 덜 눌립니다. */
+  --color-ink: #0b0e14;
+  --color-ink-soft: #111520;
+  --color-ink-card: #151a24;
+  --color-line: #2a3140;
+  --color-line-soft: #1d2230;
+  --color-paper: #eef1f6;
+  --color-muted: #949cad;
+  --color-muted-dim: #6b7384;
   --color-accent: #6ee7b7;
-  --color-accent-dim: #2f6f57;
+  --color-accent-dim: #3a7f65;
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
@@ -21,7 +22,11 @@ html {
 }
 
 body {
-  background: var(--color-ink);
+  /* 위쪽에만 아주 옅은 빛을 둬서 평평한 느낌을 덜어냅니다. */
+  background:
+    radial-gradient(1100px 620px at 50% -220px, #1a2233 0%, transparent 70%),
+    var(--color-ink);
+  background-attachment: fixed;
   color: var(--color-paper);
   -webkit-font-smoothing: antialiased;
   word-break: keep-all;
@@ -43,4 +48,41 @@ body {
 
 .rule {
   border-top: 1px solid var(--color-line-soft);
+}
+
+/* 눌러야 한다는 게 보이는 버튼. 기본은 테두리만, 올리면 채워집니다. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--color-line);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.95rem;
+  background: var(--color-ink-card);
+  color: var(--color-paper);
+  font-size: 0.875rem;
+  line-height: 1;
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.btn:hover {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 12%, var(--color-ink-card));
+  color: var(--color-accent);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn .arrow {
+  transition: transform 0.18s ease;
+}
+
+.btn:hover .arrow {
+  transform: translateX(3px);
 }
