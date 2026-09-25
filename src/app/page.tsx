@@ -89,10 +89,9 @@ function Section({
   );
 }
 
-/** 긴 설명에서 첫 문장만 꺼내 한눈에 읽히게 합니다. */
-function firstSentence(text: string) {
-  const [head] = text.split(/(?<=\.)\s/);
-  return head ?? text;
+/** 목록에서는 앞 몇 문장만 보여주고 나머지는 상세 페이지에 맡깁니다. */
+function clamp(text: string, sentences: number) {
+  return text.split(/(?<=\.)\s/).slice(0, sentences).join(" ");
 }
 
 function BlockShell({
@@ -125,82 +124,84 @@ function BlockShell({
   href: string;
 }) {
   return (
-    <article className="rule pt-12">
-      <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-        <span className="font-mono text-sm text-accent-dim">
-          {String(no).padStart(2, "0")}
-        </span>
-        <span className="eyebrow">{meta}</span>
-      </div>
-
-      <h3 className="mt-4 font-mono text-lg text-accent">{name}</h3>
-      <p className="mt-2 text-xl font-medium leading-snug tracking-tight sm:text-2xl">
-        {headline}
-      </p>
-      {sub && <p className="mt-2 text-sm leading-relaxed text-muted-dim">{sub}</p>}
-
-      {figure && (
-        <div className="mt-8 rounded-lg border border-line bg-white p-3">
-          <Image
-            src={figure.src}
-            alt={figure.alt}
-            width={figure.width ?? 1600}
-            height={figure.height ?? 900}
-            className="h-auto w-full"
-            sizes="(min-width: 768px) 768px, 100vw"
-          />
+    <article className="rule grid gap-8 pt-12 lg:grid-cols-[19rem_1fr] lg:gap-12">
+      {/* 왼쪽: 무엇을 맡은 일인가 */}
+      <div className="lg:sticky lg:top-24 lg:self-start">
+        <div className="flex items-baseline gap-3">
+          <span className="font-mono text-sm text-accent-dim">
+            {String(no).padStart(2, "0")}
+          </span>
+          <span className="eyebrow">{meta}</span>
         </div>
-      )}
 
-      <div className="mt-10 grid gap-8 sm:grid-cols-[5rem_1fr]">
-        <p className="eyebrow sm:pt-1">문제</p>
-        <p className="leading-loose text-muted">{problem}</p>
-      </div>
+        <h3 className="mt-3 font-mono text-lg text-accent">{name}</h3>
+        <p className="mt-2 text-lg font-medium leading-snug tracking-tight">
+          {headline}
+        </p>
+        {sub && (
+          <p className="mt-2 text-xs leading-relaxed text-muted-dim">{sub}</p>
+        )}
 
-      <div className="mt-8 grid gap-8 sm:grid-cols-[5rem_1fr]">
-        <p className="eyebrow sm:pt-1">접근</p>
-        <ol className="space-y-4">
-          {approach.map((a, i) => (
-            <li key={a.name} className="grid gap-1 sm:grid-cols-[2rem_1fr]">
-              <span className="font-mono text-xs text-muted-dim sm:pt-1">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <span className="font-medium">{a.name}</span>
-                <span className="text-muted"> — {firstSentence(a.detail)}</span>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </div>
-
-      <div className="mt-8 grid gap-8 sm:grid-cols-[5rem_1fr]">
-        <p className="eyebrow sm:pt-1">결과</p>
-        <div>
-          <MetricGrid metrics={metrics} />
-          <p className="mt-5 leading-loose text-muted">{outcome}</p>
-        </div>
-      </div>
-
-      {achievement && (
-        <div className="mt-8 grid gap-8 sm:grid-cols-[5rem_1fr]">
-          <p className="eyebrow sm:pt-1">성과</p>
-          <p className="rounded-lg border border-accent-dim bg-ink-card px-4 py-3 text-sm text-accent">
+        {achievement && (
+          <p className="mt-4 rounded border border-accent-dim px-3 py-2 text-xs leading-relaxed text-accent">
             {achievement}
           </p>
-        </div>
-      )}
+        )}
 
-      <div className="mt-8 grid gap-8 sm:grid-cols-[5rem_1fr]">
-        <span className="hidden sm:block" />
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <TagList items={tags} />
-          <Link
-            href={href}
-            className="shrink-0 font-mono text-sm text-muted transition-colors hover:text-accent"
-          >
-            자세히 보기 →
-          </Link>
+        <div className="mt-4">
+          <TagList items={tags.slice(0, 5)} />
+        </div>
+
+        <Link
+          href={href}
+          className="mt-4 inline-block font-mono text-xs text-muted transition-colors hover:text-accent"
+        >
+          자세히 보기 →
+        </Link>
+      </div>
+
+      {/* 오른쪽: 문제 · 접근 · 결과 */}
+      <div>
+        {figure && (
+          <div className="rounded-lg border border-line bg-white p-2">
+            <Image
+              src={figure.src}
+              alt={figure.alt}
+              width={figure.width ?? 1600}
+              height={figure.height ?? 900}
+              className="mx-auto h-auto max-h-64 w-auto max-w-full"
+              sizes="(min-width: 1024px) 640px, 100vw"
+            />
+          </div>
+        )}
+
+        <div className={figure ? "mt-6" : ""}>
+          <p className="eyebrow">문제</p>
+          <p className="mt-2 leading-relaxed text-muted">
+            {clamp(problem, 2)}
+          </p>
+        </div>
+
+        <div className="mt-6">
+          <p className="eyebrow">접근</p>
+          <ol className="mt-2 grid gap-x-6 gap-y-2 sm:grid-cols-2">
+            {approach.map((a, i) => (
+              <li key={a.name} className="flex gap-2 text-sm">
+                <span className="font-mono text-xs text-muted-dim">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span>{a.name}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div className="mt-6">
+          <p className="eyebrow">결과</p>
+          <div className="mt-2">
+            <MetricGrid metrics={metrics} />
+          </div>
+          <p className="mt-3 leading-relaxed text-muted">{clamp(outcome, 1)}</p>
         </div>
       </div>
     </article>
