@@ -89,11 +89,12 @@ function Highlights() {
           <Link key={h.name} href={h.href} className="card-link flex flex-col">
             <p className="eyebrow leading-relaxed">{h.focus}</p>
             <h3 className="mt-3 font-mono text-lg text-accent">{h.name}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted">{h.detail}</p>
-            <p className="mt-auto pt-5 font-mono text-xs text-paper">
-              {h.metric}
+            {/* mb-5로 최소 간격을 주고, 남는 공간은 mt-auto가 밀어 카드마다
+                '자세히 보기'가 같은 높이에 오게 합니다. */}
+            <p className="mt-2 mb-5 text-sm leading-relaxed text-muted">
+              {h.detail}
             </p>
-            <span className="mt-4 flex items-center gap-2 border-t border-line-soft pt-4 text-xs text-muted-dim">
+            <span className="mt-auto flex items-center gap-2 border-t border-line-soft pt-4 text-xs text-muted-dim">
               자세히 보기
               <span className="arrow" aria-hidden>
                 →
