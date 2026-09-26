@@ -149,6 +149,7 @@ function BlockShell({
   name,
   headline,
   sub,
+  roleLine,
   figure,
   problem,
   approach,
@@ -163,6 +164,7 @@ function BlockShell({
   name: string;
   headline: string;
   sub?: string;
+  roleLine?: string;
   figure?: Figure;
   problem: string;
   approach: Approach[];
@@ -189,6 +191,13 @@ function BlockShell({
         </p>
         {sub && (
           <p className="mt-2 text-xs leading-relaxed text-muted-dim">{sub}</p>
+        )}
+
+        {roleLine && (
+          <div className="mt-4">
+            <p className="eyebrow">맡은 부분</p>
+            <p className="mt-1.5 text-sm leading-relaxed text-muted">{roleLine}</p>
+          </div>
         )}
 
         {achievement && (
@@ -300,6 +309,7 @@ function ProjectBlock({ project, no }: { project: Project; no: number }) {
     <BlockShell
       no={no}
       meta={`${project.context} · ${project.period} · ${project.status}`}
+      roleLine={project.role}
       name={project.name}
       headline={project.tagline}
       figure={figure}
