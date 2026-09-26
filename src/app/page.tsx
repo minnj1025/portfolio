@@ -16,7 +16,7 @@ export default function Home() {
       <Section
         id="research"
         eyebrow="01 — Research"
-        title="연구 포트폴리오"
+        title="연구 프로젝트"
         lead="운전자와 주행 상황을 함께 인식하는 문제를 정확도 · 효율 · 인과 · 실차 적용성의 네 축으로 나눠 다뤄왔습니다. 각 논문은 그 축 하나씩을 맡고 있습니다."
       >
         <div className="space-y-20">
@@ -29,7 +29,7 @@ export default function Home() {
       <Section
         id="projects"
         eyebrow="02 — Engineering"
-        title="개발 포트폴리오"
+        title="개발 프로젝트"
         lead="연구 밖에서 만든 것들입니다. 모델을 붙이는 일보다, 사람이 실제로 쓰는 흐름까지 이어붙이는 데 시간을 썼습니다."
       >
         <div className="space-y-20">

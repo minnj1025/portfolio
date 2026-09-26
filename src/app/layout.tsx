@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 const navItems = [
-  { href: "/", label: "포트폴리오" },
+  { href: "/", label: "프로젝트" },
   { href: "/resume", label: "이력서" },
 ];
 

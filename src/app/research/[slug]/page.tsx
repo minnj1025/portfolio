@@ -23,7 +23,7 @@ export default async function ResearchDetail({ params }: Props) {
 
   return (
     <article className="mx-auto max-w-3xl px-6 pt-16 pb-8">
-      <BackLink href="/#research" label="연구 포트폴리오" />
+      <BackLink href="/#research" label="연구 프로젝트" />
 
       <header className="mt-8">
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
