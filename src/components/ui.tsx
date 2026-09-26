@@ -136,9 +136,9 @@ export function FigureStrip({ figures }: { figures: Figure[] }) {
   return (
     <div>
       <p className="eyebrow">그림</p>
-      <div className="mt-4 space-y-10">
+      <div className="mt-4 space-y-12">
         {figures.map((f) => (
-          <figure key={f.caption}>
+          <figure key={f.caption} className={f.narrow ? "mx-auto max-w-lg" : ""}>
             {f.src && isVideo(f) ? (
               // 자동 재생 · 무음 · 반복. 모바일에서도 전체화면으로 튀지 않게 합니다.
               <video
@@ -169,8 +169,15 @@ export function FigureStrip({ figures }: { figures: Figure[] }) {
                 </span>
               </div>
             )}
-            <figcaption className="mt-3 text-sm leading-relaxed text-muted-dim">
-              {f.caption}
+            <figcaption className="mt-3">
+              <span className="block text-sm leading-relaxed text-muted">
+                {f.caption}
+              </span>
+              {f.note && (
+                <span className="mt-2 block border-l border-line-soft pl-4 text-sm leading-loose text-muted-dim">
+                  {f.note}
+                </span>
+              )}
             </figcaption>
           </figure>
         ))}

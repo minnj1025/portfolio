@@ -211,23 +211,18 @@ function BlockShell({
 
       {/* 오른쪽: 문제 · 접근 · 결과 */}
       <div>
+        {/* 목록에서는 그림만 보여줍니다. 설명은 상세 페이지가 맡습니다. */}
         {figure && (
-          <figure>
-            <div className="rounded-lg border border-line bg-white p-2">
-              <Image
-                src={figure.src}
-                alt={figure.alt}
-                width={figure.width ?? 1600}
-                height={figure.height ?? 900}
-                className="mx-auto h-auto max-h-64 w-auto max-w-full"
-                sizes="(min-width: 1024px) 640px, 100vw"
-              />
-            </div>
-            {/* 긴 캡션을 가진 그림은 short로 한 줄 설명을 따로 답니다. */}
-            <figcaption className="mt-2.5 text-xs leading-relaxed text-muted-dim">
-              {figure.short ?? figure.caption}
-            </figcaption>
-          </figure>
+          <div className="rounded-lg border border-line bg-white p-2">
+            <Image
+              src={figure.src}
+              alt={figure.alt}
+              width={figure.width ?? 1600}
+              height={figure.height ?? 900}
+              className="mx-auto h-auto max-h-64 w-auto max-w-full"
+              sizes="(min-width: 1024px) 640px, 100vw"
+            />
+          </div>
         )}
 
         <div className={figure ? "mt-6" : ""}>

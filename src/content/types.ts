@@ -19,8 +19,10 @@ export type Figure = {
   height?: number;
   /** .mp4일 때 목록과 첫 프레임에 쓰는 정지 이미지 */
   poster?: string;
-  /** 목록 카드에 쓸 짧은 설명. 없으면 caption을 그대로 씁니다. */
-  short?: string;
+  /** 상세 페이지에서 캡션 아래 붙는 설명. 무엇을 봐야 하는지를 적습니다. */
+  note?: string;
+  /** 레이더 차트처럼 크게 띄울 필요가 없는 그림을 좁게 표시합니다. */
+  narrow?: boolean;
 };
 
 export function isVideo(figure: Figure) {

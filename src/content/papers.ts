@@ -57,28 +57,53 @@ export const papers: Paper[] = [
       {
         src: "/figures/cova-mtl-selection.mp4",
         poster: "/figures/cova-mtl-selection-poster.png",
-        short:
-          "실제 동작 — 클립마다 필요한 모달리티 개수가 달라지고, 그래서 얼마나 아꼈는지가 함께 나옵니다.",
         alt: "AIDE 테스트 클립 네 개를 차례로 재생하며, 클립마다 ACVE가 31개 후보 부분집합의 예측 손실을 추정하고 SSR이 손실 기준선 아래에서 가장 작은 것을 골라 실행 분기와 절감률까지 보여주는 영상.",
         caption:
-          "실제 동작 — 점 하나가 후보 부분집합 하나입니다. 가로축은 그 후보가 쓰는 모달리티 개수, 세로축은 다섯 개를 다 썼을 때 대비 예측 손실입니다. 점선 아래면 충분하고, 그중 가장 왼쪽이 선택됩니다. 2개만 써도 되는 클립부터 다섯 개가 전부 필요한 클립까지 차례로 나오며, 마지막은 절약할 수 없는 경우입니다. 화면 아래 수치는 seed 42 단일 시드 기준이라 위의 5-seed 결과와는 다릅니다. AIDE 피험자 보호를 위해 얼굴과 상반신은 흐리게 처리했습니다.",
+          "실제 동작 — 점 하나가 후보 부분집합 하나입니다. 가로축은 그 후보가 쓰는 모달리티 개수, 세로축은 다섯 개를 다 썼을 때 대비 예측 손실입니다.",
+        note:
+          "점선 아래면 충분하고, 그중 가장 왼쪽이 선택됩니다. 2개만 써도 되는 클립부터 다섯 개가 전부 필요한 클립까지 차례로 나오며, 마지막은 절약할 수 없는 경우입니다. 화면 아래 수치는 seed 42 단일 시드 기준이라 위의 5-seed 결과와는 다릅니다. AIDE 피험자 보호를 위해 얼굴과 상반신은 흐리게 처리했습니다.",
         width: 1280,
         height: 720,
+      },
+      {
+        src: "/figures/cova-mtl-paradigm.png",
+        alt: "멀티모달 멀티태스크 주행 인식에서 모달리티 선택 방식들을 비교한 그림.",
+        caption:
+          "선택 방식 비교 — 기존 방식들이 언제 판단하는지, COVA-MTL은 언제 판단하는지",
+        note:
+          "기존 방식은 인코딩을 마친 특징을 보고 중요도를 매기거나, 데이터셋 전체에 같은 개수 제한을 겁니다. 앞은 안 쓸 입력까지 이미 계산한 뒤라 비용이 줄지 않고, 뒤는 장면마다 필요한 것이 다르다는 점을 반영하지 못합니다.",
+        width: 1062,
+        height: 578,
       },
       {
         src: "/figures/cova-mtl-architecture.png",
         alt: "COVA-MTL 전체 구조도. ACVE가 반사실 가치를 추정하고, SSR이 최소 부분집합을 고르며, SCML이 부분집합 조건 학습을 담당한다.",
         caption:
           "전체 아키텍처 — (a) ACVE 반사실 가치 추정, (b) SSR 최소 부분집합 선택, (c) SCML 부분집합 조건 학습",
+        note:
+          "왼쪽 경량 프리뷰가 만든 scout token만으로 31개 후보의 손실 변화를 예측하고, 그중 가장 작은 것을 고른 뒤, 선택된 분기만 실제로 실행합니다. 무거운 인코더를 지나가는 것은 선택된 모달리티뿐입니다.",
         width: 1165,
         height: 483,
       },
       {
-        src: "/figures/cova-mtl-paradigm.png",
-        alt: "멀티모달 멀티태스크 주행 인식에서 모달리티 선택 방식들을 비교한 그림.",
-        caption: "모달리티 선택 패러다임 비교 — 기존 방식과 COVA-MTL의 차이",
-        width: 1062,
-        height: 578,
+        src: "/figures/cova-mtl-tsne.png",
+        alt: "COVA-MTL과 단순 공유 인코더의 모달리티별 특징 분포를 t-SNE로 비교한 그림.",
+        caption:
+          "모달리티별 특징 분포 — 위가 COVA-MTL, 아래가 단순 공유 인코더",
+        note:
+          "다섯 모달리티가 서로 다른 덩어리로 갈라져 있어야 공유 인코더가 각 입력의 성격을 유지하고 있다는 뜻입니다. 아래는 색이 뒤섞여 있고, 특히 일부만 쓰는 (d)에서 구분이 무너집니다. 같은 조건의 (b)는 세 덩어리가 그대로 떨어져 있습니다.",
+        width: 2121,
+        height: 1373,
+      },
+      {
+        src: "/figures/cova-mtl-qualitative.png",
+        alt: "AIDE 테스트 샘플 세 건에 대해 선택된 모달리티 부분집합과 네 태스크 예측을 단순 공유 인코더와 비교한 그림. 붉은 X는 실행하지 않은 입력.",
+        caption:
+          "실제 예측 — 붉은 X는 실행하지 않은 입력입니다.",
+        note:
+          "(a)는 다섯 중 둘만 쓰고도 네 태스크를 모두 맞혔고, 같은 장면에서 전부 쓴 단순 공유 인코더는 넷 중 하나만 맞혔습니다. 적게 써서 싸진 것이 아니라, 덜 쓰는 편이 오히려 정확했던 경우입니다. AIDE 피험자 보호를 위해 얼굴과 상반신은 가렸습니다.",
+        width: 1873,
+        height: 827,
       },
     ],
   },
@@ -137,19 +162,45 @@ export const papers: Paper[] = [
       "AIDE 벤치마크에서 5회 반복 기준 mAcc 85.84% ± 0.75로 state-of-the-art를 갱신했습니다. MobileNetV3-Small 백본에서도 3.42M 파라미터로 82.97%를 유지해, 정확도와 효율의 trade-off가 양호함을 보였습니다.",
     figures: [
       {
+        src: "/figures/trace-mtl-paradigm.png",
+        alt: "주행 인식 접근 비교. (a) 태스크별 시간 모델링, (b) 정적 태스크 상호작용 모델링, (c) 제안하는 TRACE-MTL.",
+        caption:
+          "접근 비교 — (a) 태스크별 시간 모델링, (b) 정적 태스크 상호작용, (c) TRACE-MTL",
+        note:
+          "(a)는 각 태스크의 시간 흐름만 따로 보고, (b)는 태스크 사이를 잇지만 시간 축이 없습니다. 둘 사이에 비어 있는 것이 '다른 태스크의 몇 프레임 전 상태가 지금 이 판단에 영향을 주는가'이고, 이 연구가 맡은 자리입니다.",
+        width: 1058,
+        height: 641,
+      },
+      {
         src: "/figures/trace-mtl-architecture.png",
-        alt: "TRACE-MTL 전체 구조도. VISTA의 RIGM과 HSA-Net, MoVE의 expert routing, TRACE의 cross-task causal propagation으로 구성된다.",
+        alt: "TRACE-MTL 전체 구조도. VISTA 증거 추출, MoVE 전문가 라우팅, TRACE 인과 전파의 세 단계.",
         caption:
           "전체 아키텍처 — (A) VISTA 증거 추출, (B) MoVE 전문가 라우팅, (C) TRACE 인과 전파",
+        note:
+          "추출 · 정렬 · 전파의 세 단계로 나뉩니다. 인캐빈과 외부를 두 스트림으로 인코딩해 운전자 중심 증거를 뽑고, 태스크마다 필요한 전문가만 골라 증거를 정렬한 뒤, 태스크 사이로 그 증거를 시간 축을 따라 흘려보냅니다.",
         width: 1207,
         height: 622,
       },
       {
+        src: "/figures/trace-mtl-qualitative.png",
+        alt: "빈 주차장에서 좌회전하는 AIDE 클립에 대해 TRACE의 태스크 간 인과 전파가 운전자 행동 예측을 교정하는 과정을 보여주는 그림.",
+        caption:
+          "실제 동작 — 빈 주차장에서 좌회전하는 장면",
+        note:
+          "좌회전 때문에 생긴 시선 이동을 운전자 영상만으로 보면 '두리번거림'으로 읽힙니다. 같은 시점의 교통 상황(원활)과 차량 거동(회전) 증거를 운전자 행동 쪽으로 전파하면 '정상 주행'의 확신도가 0.53에서 0.90으로 올라갑니다. 아래 히트맵은 그 영향이 어느 시점에 몰리는지를 보여줍니다. AIDE 피험자 보호를 위해 인캐빈 영상은 가렸습니다.",
+        width: 2007,
+        height: 1037,
+      },
+      {
         src: "/figures/trace-mtl-results.png",
-        alt: "AIDE DB에서 TRACE-MTL과 state-of-the-art 방법들의 태스크별 정확도와 F1-score를 비교한 레이더 차트.",
-        caption: "AIDE 비교 — HSA-Net 백본과 MobileNetV3-Small 백본 결과를 함께 표시",
-        width: 651,
-        height: 366,
+        alt: "AIDE 데이터셋에서 TRACE-MTL과 기존 방법들의 태스크별 정확도·F1-score를 비교한 레이더 차트.",
+        caption:
+          "AIDE 비교 — (a) 태스크별 정확도와 mAcc, (b) F1-score",
+        note:
+          "축에서 바깥쪽일수록 좋습니다. 굵은 분홍이 TRACE-MTL이고, 다섯 축 전부에서 기존 방법들 바깥에 있습니다. 네 태스크 평균 85.84%로 기존 최고 대비 3.13%p 앞섭니다.",
+        width: 1391,
+        height: 818,
+        narrow: true,
       },
     ],
   },
@@ -214,19 +265,45 @@ export const papers: Paper[] = [
       "독립 인코더 구조 대비 파라미터 59%, GFLOPs 61.1%를 줄이면서 mAcc는 오히려 0.11%p 향상시켰습니다. 정확도를 내주지 않고 효율을 얻는 trade-off 지점을 확인했습니다.",
     figures: [
       {
+        src: "/figures/muse-mtl-motivation.png",
+        alt: "주행 인식의 학습 방식 비교. (a) 단일 태스크, (b) 독립 인코더 멀티모달, (c) 멀티태스크, (d) 제안하는 MUSE-MTL의 공유 인코더.",
+        caption:
+          "왜 인코더를 공유하는가 — (a)~(c) 기존 방식, (d) MUSE-MTL",
+        note:
+          "(b)처럼 모달리티마다 인코더를 따로 두면 입력이 하나 늘 때마다 모델도 그만큼 커집니다. (d)는 인코더 하나를 모든 모달리티가 나눠 쓰고, 대신 정규화와 저랭크 보정으로 모달리티 사이의 차이를 흡수합니다. AIDE 피험자 보호를 위해 얼굴과 상반신은 가렸습니다.",
+        width: 1621,
+        height: 1043,
+      },
+      {
         src: "/figures/muse-mtl-architecture.png",
         alt: "MUSE-MTL 전체 구조도. PS-MSBN, StaG-LoRA, ETB를 적용한 공유 멀티모달 인코더와 TSMF 멀티태스크 헤드.",
         caption:
           "전체 아키텍처 — 좌측 PS-MSBN·StaG-LoRA, 중앙 공유 인코더, 우측 ETB와 TSMF",
+        note:
+          "합성곱 가중치는 하나만 두고, 모달리티별 차이는 정규화 통계(PS-MSBN)와 저랭크 보정(StaG-LoRA)이 맡습니다. ETB가 2단계에서 시간 길이를 절반으로 줄이므로, 이후 깊은 단계는 전부 절반 비용으로 돕니다.",
         width: 991,
         height: 580,
       },
       {
+        src: "/figures/muse-mtl-tsne.png",
+        alt: "단순 공유 인코더와 MUSE의 모달리티별 특징 분포를 t-SNE로 비교한 그림.",
+        caption:
+          "모달리티별 특징 분포 — (a) MUSE 없이, (b) MUSE 적용",
+        note:
+          "인코더 하나를 그냥 공유하면 (a)처럼 얼굴·신체·장면이 겹쳐 서로 간섭합니다. (b)는 같은 가중치를 쓰면서도 모달리티별로 덩어리가 갈라집니다. 공유로 아낀 크기가 표현을 망치지 않았다는 근거입니다.",
+        width: 1860,
+        height: 749,
+      },
+      {
         src: "/figures/muse-mtl-results.png",
-        alt: "AIDE 데이터셋에서 MUSE-MTL과 기존 방법들의 태스크별 정확도와 mAcc를 비교한 레이더 차트.",
-        caption: "AIDE 비교 — mAcc 86.38%로 독립 인코더 구조를 넘어섭니다.",
-        width: 401,
-        height: 468,
+        alt: "AIDE 데이터셋에서 MUSE-MTL과 기존 방법들의 태스크별 정확도·F1-score를 비교한 레이더 차트.",
+        caption:
+          "AIDE 비교 — (a) 태스크별 정확도와 mAcc, (b) F1-score",
+        note:
+          "축에서 바깥쪽일수록 좋습니다. 네 태스크 평균 86.38%로 기존 최고 대비 4.08%p 앞서면서, 모달리티마다 인코더를 따로 두는 구조 대비 파라미터는 59% 적습니다.",
+        width: 1965,
+        height: 966,
+        narrow: true,
       },
     ],
   },
@@ -290,6 +367,8 @@ export const papers: Paper[] = [
         alt: "PRISM-MTL 전체 구조도. 멀티모달 전처리, HSA-Net 기반 인코더, TSMF 모듈을 거쳐 DER·DBR·TCR·VBR 네 태스크를 예측한다.",
         caption:
           "전체 아키텍처 — 5개 모달리티가 HSA-Net·Token-SE 인코더를 거쳐 TSMF에서 태스크별로 선택 융합됩니다.",
+        note:
+          "왼쪽에서 얼굴·신체·장면은 HSA-Net이, 자세·제스처는 Token-SE가 토큰으로 만듭니다. 다섯 토큰이 한자리에 모인 뒤에야 태스크별로 갈라지는데, 그 갈라지는 지점이 오른쪽 TSMF입니다.",
         width: 1600,
         height: 707,
       },
@@ -297,16 +376,22 @@ export const papers: Paper[] = [
         src: "/figures/prism-mtl-tsmf.png",
         alt: "TSMF 모듈 구조. 학습 가능한 태스크 토큰을 query로, 5개 모달리티 토큰을 key와 value로 쓰는 멀티헤드 cross-attention 구조.",
         caption:
-          "TSMF — 태스크 토큰이 query, 모달리티 토큰이 key·value로 들어가 태스크마다 필요한 모달리티에 집중합니다.",
+          "TSMF — 태스크 토큰이 query, 모달리티 토큰이 key·value로 들어갑니다.",
+        note:
+          "태스크마다 학습 가능한 토큰을 하나씩 두고, 그 토큰이 다섯 모달리티 중 자기에게 필요한 쪽에만 가중치를 싣습니다. 운전자 감정은 얼굴 쪽으로, 교통상황은 장면 쪽으로 쏠리기 때문에 한 태스크의 학습이 다른 태스크를 끌고 가지 않습니다.",
         width: 1600,
         height: 570,
       },
       {
         src: "/figures/prism-mtl-results.png",
         alt: "AIDE 데이터베이스에서 PRISM-MTL과 기존 방법들의 태스크별 정확도·F1-score를 비교한 레이더 차트.",
-        caption: "AIDE 벤치마크 비교 — 태스크별 정확도와 F1-score",
-        width: 1600,
-        height: 927,
+        caption:
+          "AIDE 비교 — (a) 태스크별 정확도와 mAcc, (b) F1-score",
+        note:
+          "축에서 바깥쪽일수록 좋습니다. 굵은 갈색이 PRISM-MTL이고, 네 태스크 평균 86.25%로 기존 최고 대비 3.95%p 앞섭니다. 특정 태스크만 좋아진 것이 아니라 네 축이 함께 밀려난 점이 요점입니다.",
+        width: 2282,
+        height: 1348,
+        narrow: true,
       },
     ],
     featured: true,
@@ -377,20 +462,28 @@ export const papers: Paper[] = [
         alt: "STFTransNet 전체 구조도. 얼굴 랜드마크 추출, RCN 기반 two-stream cross-attention, TCN 시간 특징 추출, 앙상블 분류로 이어지는 흐름.",
         caption:
           "전체 아키텍처 — 얼굴·행동 two-stream을 cross-attention으로 묶고 TCN으로 시간 축을 더합니다.",
+        note:
+          "공간 정보와 시간 정보를 따로 뽑아 마지막에 합칩니다. 시간 모델링이 흔들리는 구간에도 프레임 단위 판단이 남도록, TCN 출력에 공간 특징을 residual로 더했습니다.",
         width: 1600,
         height: 988,
       },
       {
         src: "/figures/stftransnet-cross-attention.png",
         alt: "Cross-attention 구조도. 얼굴 스트림과 행동 스트림이 서로를 참조하는 구조.",
-        caption: "Cross-attention — 한쪽이 가려져도 다른 스트림이 보완합니다.",
+        caption:
+          "Cross-attention — 얼굴 특징이 query, 원본 영상 특징이 key·value입니다.",
+        note:
+          "두 스트림을 같은 비중으로 섞지 않고 한쪽을 질의로 둔 비대칭 구조입니다. 그래서 얼굴 단서가 약한 구간일수록 전신 영상 쪽 정보가 더 많이 끌려옵니다.",
         width: 1600,
         height: 785,
       },
       {
         src: "/figures/stftransnet-results.png",
         alt: "제안 STFTransNet과 전이학습 모델의 정확도, F1-score, 파라미터 수, FLOPs 비교 그래프.",
-        caption: "성능 비교 — 정확도·F1-score와 파라미터·FLOPs를 함께 비교",
+        caption:
+          "성능 비교 — 정확도·F1-score와 파라미터·FLOPs를 함께 놓았습니다.",
+        note:
+          "정확도만 놓고 고르면 무거운 모델이 유리하므로 비용 축을 같이 뒀습니다. 공개 데이터 3종 모두에서 기존 방법을 넘으면서 파라미터와 연산량은 더 낮은 지점을 찾았습니다.",
         width: 1600,
         height: 1103,
       },
@@ -450,15 +543,21 @@ export const papers: Paper[] = [
         alt: "운전자 데이터를 Dlib으로 분석하고 Drowsy·Pre Drowsy·Non Drowsy 3단계로 재라벨링한 뒤 SERN으로 분류하는 전체 흐름도.",
         caption:
           "전체 흐름 — 기존 2단계 라벨을 데이터 분석 후 3단계(졸음/전조/비졸음)로 재정의합니다.",
+        note:
+          "모델을 바꾸기 전에 라벨부터 본 작업입니다. 하품 구간은 졸음과 비졸음 양쪽에 걸쳐 있어 지표로 쓸 수 없다고 보고 제외했고, 눈 개방이 불완전한 구간은 두 상태 사이에 놓이는 것을 확인해 '전조'로 따로 세웠습니다.",
         width: 1134,
         height: 285,
       },
       {
         src: "/figures/sern-architecture.png",
         alt: "SERN 모델 구조도. ResNet의 residual block에 Squeeze-and-Excitation 블록을 결합한 SE Residual Block 구성.",
-        caption: "SERN 구조 — ResNet18의 residual block에 SE 블록을 결합해 채널 중요도를 재조정",
+        caption:
+          "SERN 구조 — ResNet18의 residual block에 SE 블록을 결합했습니다.",
+        note:
+          "블록마다 채널별 중요도를 다시 매기는 구조라, 가려짐으로 일부 채널이 무의미해지면 나머지 채널의 비중이 올라갑니다.",
         width: 540,
         height: 621,
+        narrow: true,
       },
     ],
   },
