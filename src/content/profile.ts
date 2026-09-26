@@ -1,49 +1,14 @@
 export const profile = {
   nameKo: "김민준",
   nameEn: "Minjun Kim",
-  role: "AI Research Engineer",
+  role: "AI Engineer",
   lab: "조선대학교 지능형데이터처리 연구실",
   advisor: "최규호 교수",
-  tagline: "흩어진 데이터로 원하는 결과를 만드는 연구·개발자",
+  /** 첫 화면에서 이름 바로 아래 한 줄. 길게 설명하지 않고 무엇을 하는 사람인지만 말합니다. */
+  tagline: "멀티모달 인식 모델을 연구하고, 사람이 쓰는 서비스로 만듭니다.",
+  /** 검색 결과와 링크 미리보기에 쓰이는 설명. 화면에는 나오지 않습니다. */
   intro:
-    "여러 갈래로 들어오는 데이터를 한 모델에서 함께 학습시키는 연구를 하고, 검색과 언어 모델을 엮어 사람이 실제로 쓰는 서비스를 만듭니다. 어느 쪽이든 정확도에서 끝내지 않고, 감당할 수 있는 크기인지와 입력이 빠져도 버티는지를 같은 비중으로 봅니다.",
-
-  /** 상단을 가로지르는 키워드 띠. 무엇을 다루는 사람인지 먼저 보이게 합니다. */
-  disciplines: [
-    "MULTIMODAL FUSION",
-    "MULTI-TASK LEARNING",
-    "DRIVER PERCEPTION",
-    "EFFICIENT INFERENCE",
-    "MISSING MODALITY",
-    "RETRIEVAL",
-    "LLM SYSTEMS",
-    "EVALUATION DESIGN",
-    "EDGE DEPLOYMENT",
-  ],
-  /**
-   * 상단에 먼저 내미는 대표 프로젝트 셋. 게재 여부 대신 무엇을 다룬 일인지를
-   * 앞세웁니다. 학회명은 각 상세 페이지에 있습니다.
-   */
-  highlights: [
-    {
-      focus: "MODALITY SELECTION · EFFICIENCY",
-      name: "COVA-MTL",
-      detail: "쓸 모달리티를 먼저 고르게 해서, 정확도를 지키며 연산을 줄였습니다.",
-      href: "/research/cova-mtl",
-    },
-    {
-      focus: "SELECTIVE FUSION · TASK INTERFERENCE",
-      name: "PRISM-MTL",
-      detail: "태스크마다 필요한 모달리티만 골라 융합해 간섭을 줄였습니다.",
-      href: "/research/prism-mtl",
-    },
-    {
-      focus: "RETRIEVAL · LLM PIPELINE",
-      name: "이음",
-      detail: "하루의 기록을 읽어, 그날에 닿는 말씀으로 잇습니다.",
-      href: "/projects/ieum",
-    },
-  ],
+    "여러 갈래로 들어오는 데이터를 한 모델에서 함께 학습시키는 멀티모달 인식 연구를 하고, 검색과 언어 모델을 엮어 실제로 쓰이는 서비스를 만드는 AI 엔지니어 김민준의 포트폴리오입니다.",
   contact: {
     email: "ryan6768@gmail.com",
     github: "https://github.com/minnj1025",

@@ -23,7 +23,7 @@ export default async function ProjectDetail({ params }: Props) {
 
   return (
     <article className="mx-auto max-w-3xl px-6 pt-16 pb-8">
-      <BackLink href="/#projects" label="개발 프로젝트" />
+      <BackLink href={`/#${project.slug}`} label="목록으로" />
 
       <header className="mt-8">
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
@@ -65,6 +65,7 @@ export default async function ProjectDetail({ params }: Props) {
 
       <div className="rule mt-16 pt-16">
         <CaseBody
+          hook={project.hook}
           problem={project.problem}
           approach={project.approach}
           metrics={project.metrics}

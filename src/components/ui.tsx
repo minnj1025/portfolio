@@ -65,12 +65,14 @@ export function TagList({ items }: { items: readonly string[] }) {
 
 /** 논문/프로젝트 상세에서 "문제 → 방법 → 결과"를 찍어내는 공통 본문 */
 export function CaseBody({
+  hook,
   problem,
   approach,
   metrics,
   outcome,
   figures,
 }: {
+  hook: string;
   problem: string;
   approach: Approach[];
   metrics: { label: string; value: string }[];
@@ -79,9 +81,14 @@ export function CaseBody({
 }) {
   return (
     <div className="space-y-16">
-      <Block label="문제">
-        <p className="leading-loose text-muted">{problem}</p>
-      </Block>
+      {/* 가장 먼저 읽혀야 하는 자리. 한 문장으로 크게 말한 뒤 자세한 사정을 붙입니다. */}
+      <div className="rounded-xl border border-line bg-ink-card p-6 sm:p-8">
+        <p className="eyebrow">문제</p>
+        <p className="mt-3 text-xl font-semibold leading-snug tracking-tight sm:text-2xl">
+          {hook}
+        </p>
+        <p className="mt-5 leading-loose text-muted">{problem}</p>
+      </div>
 
       <Block label="접근">
         <ol className="space-y-8">

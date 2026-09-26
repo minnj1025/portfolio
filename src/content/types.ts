@@ -55,6 +55,8 @@ export type Paper = {
   doi?: string;
   year: number;
   keywords: string[];
+  /** 목록 카드 맨 위에 크게 띄우는 한 문장. 전공자가 아니어도 읽히게 씁니다. */
+  hook: string;
   /** 무엇이 문제였는가 */
   problem: string;
   /**
@@ -67,7 +69,7 @@ export type Paper = {
   /** 결과 서술 */
   outcome: string;
   figures: Figure[];
-  /** 대표 논문이면 메인 상단에 크게 노출 */
+  /** 대표 프로젝트면 메인 첫 화면에 크게 노출합니다. */
   featured?: boolean;
 };
 
@@ -79,7 +81,9 @@ export type Project = {
   /** 소속/맥락. 예: 개인 프로젝트, 3인 팀 · 팀장 */
   context: string;
   role: string;
-  status: "운영 중" | "개발 중" | "완료";
+  status: "운영 중" | "개발 중" | "재개발 중" | "완료";
+  /** 목록 카드 맨 위에 크게 띄우는 한 문장. 전공자가 아니어도 읽히게 씁니다. */
+  hook: string;
   problem: string;
   approach: Approach[];
   metrics: { label: string; value: string }[];

@@ -23,7 +23,7 @@ export default async function ResearchDetail({ params }: Props) {
 
   return (
     <article className="mx-auto max-w-3xl px-6 pt-16 pb-8">
-      <BackLink href="/#research" label="연구 프로젝트" />
+      <BackLink href={`/#${paper.slug}`} label="목록으로" />
 
       <header className="mt-8">
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
@@ -76,6 +76,7 @@ export default async function ResearchDetail({ params }: Props) {
 
       <div className="rule mt-16 pt-16">
         <CaseBody
+          hook={paper.hook}
           problem={paper.problem}
           approach={paper.approach}
           metrics={paper.metrics}

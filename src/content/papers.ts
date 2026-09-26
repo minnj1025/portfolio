@@ -20,6 +20,7 @@ export const papers: Paper[] = [
       "Knowledge Distillation",
       "Latency",
     ],
+    hook: "차량에서 센서를 전부 항상 처리하면 너무 무겁고, 센서가 하나라도 빠지면 인식이 흔들립니다.",
     problem:
       "모든 모달리티를 항상 처리하는 방식은 비용이 크고, 실제 차량에서는 센서가 빠지면 입력 구성 자체가 달라집니다. 비용 문제와 결손 문제가 따로 다뤄져 왔지만, 실차에서는 이 둘이 같은 문제입니다.",
     approach: [
@@ -106,6 +107,7 @@ export const papers: Paper[] = [
         height: 827,
       },
     ],
+    featured: true,
   },
   {
     slug: "trace-mtl",
@@ -127,6 +129,7 @@ export const papers: Paper[] = [
       "Multi-Task Learning",
       "Lightweight Backbone",
     ],
+    hook: "운전자의 시선 이동이 좌회전 때문인지 한눈을 판 것인지는, 같은 순간의 도로 상황을 봐야 가려집니다.",
     problem:
       "기존 멀티모달 멀티태스크 연구는 시간 모델링과 태스크 간 상호작용을 서로 분리된 두 축으로 다뤄왔습니다. 그래서 한 태스크의 이전 시점이 다른 태스크의 현재 판단에 주는 영향, 즉 태스크 사이의 시간적 인과 의존성을 잡아내지 못합니다.",
     approach: [
@@ -223,6 +226,7 @@ export const papers: Paper[] = [
       "Batch Normalization",
       "ADAS",
     ],
+    hook: "입력 종류가 늘 때마다 인코더를 하나씩 더 붙이면, 모델이 차에 올릴 수 없을 만큼 커집니다.",
     problem:
       "ADAS의 기존 멀티모달 학습은 모달리티마다 독립 인코더를 둡니다. 모달리티가 늘어날수록 파라미터와 연산량이 선형으로 증가하고, 모달리티 간 분포 차이 때문에 표현 공간이 분리돼 의미 정렬도 어려워집니다.",
     approach: [
@@ -328,6 +332,7 @@ export const papers: Paper[] = [
       "ADAS",
       "AIDE",
     ],
+    hook: "운전자 감정과 도로 상황을 한 모델로 함께 인식하면, 서로 필요한 정보가 달라 오히려 성능을 깎아먹습니다.",
     problem:
       "ADAS는 운전자 감정(DER)·행동(DBR)과 교통상황(TCR)·차량 거동(VBR)을 함께 이해해야 하지만, 기존 연구는 각 태스크를 단일 태스크 학습으로 따로 설계해 태스크 간 상호작용을 반영하지 못했습니다. 네 태스크를 한 모델에서 공동 학습하면 태스크마다 필요한 단서가 달라 서로 간섭하는 negative transfer가 발생합니다.",
     approach: [
@@ -394,7 +399,7 @@ export const papers: Paper[] = [
         narrow: true,
       },
     ],
-    featured: true,
+    featured: true,
   },
   {
     slug: "stftransnet",
@@ -417,6 +422,7 @@ export const papers: Paper[] = [
       "TCN",
       "Multimodal Fusion",
     ],
+    hook: "운전자가 마스크나 선글라스를 쓰거나 조명이 바뀌면, 얼굴만 보는 졸음 검출은 멈춥니다.",
     problem:
       "운전자가 액세서리를 착용해 얼굴 특징이 부분적으로 가려지거나, 차량 내외부 조명 변화로 빛이 산란해 순간 해상도가 떨어지면 기존 졸음 검출 시스템은 상태를 인식하지 못합니다. 얼굴만 보는 접근으로는 실제 주행 환경의 졸음과 부주의를 함께 감당할 수 없었습니다.",
     approach: [
@@ -487,8 +493,7 @@ export const papers: Paper[] = [
         width: 1600,
         height: 1103,
       },
-    ],
-    featured: true,
+    ],
   },
   {
     slug: "sern",
@@ -505,6 +510,7 @@ export const papers: Paper[] = [
     doi: "10.23019/kingpc.20.3.202406.005",
     year: 2024,
     keywords: ["Squeeze-and-Excitation", "ResNet", "Data Relabeling", "Occlusion"],
+    hook: "공개 데이터의 졸음 라벨부터 모호해서, 모델을 바꿔도 정확도가 오르지 않았습니다.",
     problem:
       "기존 졸음 검출 시스템은 운전자의 신체 특징 하나에 의존해, 신체 일부가 가려지면 검출이 무너지는 한계가 있었습니다. 또한 공개 데이터의 졸음 라벨이 하품·눈 감김 구간에서 모호했습니다.",
     approach: [

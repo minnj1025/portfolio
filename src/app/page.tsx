@@ -3,277 +3,26 @@ import Image from "next/image";
 import { profile } from "@/content/profile";
 import { papers } from "@/content/papers";
 import { projects } from "@/content/projects";
-import {
-  stillImage,
-  type Approach,
-  type Figure,
-  type Paper,
-  type Project,
-} from "@/content/types";
-import { MetricGrid, TagList } from "@/components/ui";
+import { stillImage, type Figure, type Paper, type Project } from "@/content/types";
 
-export default function Home() {
-  return (
-    <>
-      <Hero />
-      <Disciplines />
-      <Highlights />
-
-      <Section
-        id="research"
-        eyebrow="01 — Research"
-        title="연구 프로젝트"
-        lead="운전자와 주행 상황을 함께 인식하는 문제를 정확도 · 효율 · 인과 · 실차 적용성의 네 축으로 나눠 다뤄왔습니다. 각 논문은 그 축 하나씩을 맡고 있습니다."
-      >
-        <div className="space-y-20">
-          {papers.map((p, i) => (
-            <PaperBlock key={p.slug} paper={p} no={i + 1} />
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        id="projects"
-        eyebrow="02 — Engineering"
-        title="개발 프로젝트"
-        lead="연구 밖에서 만든 것들입니다. 모델을 붙이는 일보다, 사람이 실제로 쓰는 흐름까지 이어붙이는 데 시간을 썼습니다."
-      >
-        <div className="space-y-20">
-          {projects.map((p, i) => (
-            <ProjectBlock key={p.slug} project={p} no={i + 1} />
-          ))}
-        </div>
-      </Section>
-    </>
-  );
-}
-
-function Hero() {
-  return (
-    <section className="mx-auto max-w-5xl px-6 pt-24 pb-20 sm:pt-32">
-      <p className="eyebrow">
-        {profile.nameEn} — {profile.role}
-      </p>
-      <h1 className="mt-6 max-w-3xl text-3xl font-semibold leading-[1.35] tracking-tight sm:text-5xl sm:leading-[1.3]">
-        {profile.tagline}
-      </h1>
-      <p className="mt-8 max-w-2xl leading-loose text-muted">{profile.intro}</p>
-    </section>
-  );
-}
-
-function Disciplines() {
-  // 이음매가 보이지 않도록 같은 목록을 두 번 깝니다.
-  const loop = [...profile.disciplines, ...profile.disciplines];
-  return (
-    <section className="rule border-b border-line-soft py-6">
-      <p className="eyebrow mx-auto max-w-5xl px-6">Focus areas</p>
-      <div className="marquee mt-4">
-        <div className="marquee-track">
-          {loop.map((item, i) => (
-            <span
-              key={`${item}-${i}`}
-              aria-hidden={i >= profile.disciplines.length}
-              className="flex shrink-0 items-center gap-8 pr-8 font-mono text-sm tracking-[0.18em] text-muted-dim"
-            >
-              {item}
-              <span className="sep text-accent-dim">/</span>
-            </span>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Highlights() {
-  return (
-    <section className="mx-auto max-w-5xl px-6 pt-16">
-      <p className="eyebrow">대표 프로젝트</p>
-      <div className="mt-4 grid gap-4 sm:grid-cols-3">
-        {profile.highlights.map((h) => (
-          <Link key={h.name} href={h.href} className="card-link flex flex-col">
-            <p className="eyebrow leading-relaxed">{h.focus}</p>
-            <h3 className="mt-3 font-mono text-lg text-accent">{h.name}</h3>
-            {/* mb-5로 최소 간격을 주고, 남는 공간은 mt-auto가 밀어 카드마다
-                '자세히 보기'가 같은 높이에 오게 합니다. */}
-            <p className="mt-2 mb-5 text-sm leading-relaxed text-muted">
-              {h.detail}
-            </p>
-            <span className="mt-auto flex items-center gap-2 border-t border-line-soft pt-4 text-xs text-muted-dim">
-              자세히 보기
-              <span className="arrow" aria-hidden>
-                →
-              </span>
-            </span>
-          </Link>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Section({
-  id,
-  eyebrow,
-  title,
-  lead,
-  children,
-}: {
-  id: string;
-  eyebrow: string;
-  title: string;
-  lead: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section id={id} className="rule mx-auto max-w-5xl px-6 pt-20 pb-4">
-      <p className="eyebrow">{eyebrow}</p>
-      <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
-        {title}
-      </h2>
-      <p className="mt-4 max-w-2xl leading-relaxed text-muted">{lead}</p>
-      <div className="mt-14">{children}</div>
-    </section>
-  );
-}
-
-/** 목록에서는 앞 몇 문장만 보여주고 나머지는 상세 페이지에 맡깁니다. */
-function clamp(text: string, sentences: number) {
-  return text.split(/(?<=\.)\s/).slice(0, sentences).join(" ");
-}
-
-function BlockShell({
-  no,
-  meta,
-  name,
-  headline,
-  sub,
-  roleLine,
-  figure,
-  problem,
-  approach,
-  metrics,
-  outcome,
-  achievement,
-  tags,
-  href,
-}: {
-  no: number;
-  meta: string;
-  name: string;
-  headline: string;
-  sub?: string;
-  roleLine?: string;
-  figure?: Figure;
-  problem: string;
-  approach: Approach[];
-  metrics: { label: string; value: string }[];
-  outcome: string;
-  achievement?: string;
-  tags: readonly string[];
+/**
+ * 논문과 개발 프로젝트를 한 모양으로 맞춘 카드 데이터.
+ * 첫 화면은 "무엇이 문제였나"가 먼저 읽히도록 hook을 가장 크게 띄웁니다.
+ */
+type Item = {
+  slug: string;
   href: string;
-}) {
-  return (
-    <article className="rule grid gap-8 pt-12 lg:grid-cols-[19rem_1fr] lg:gap-12">
-      {/* 왼쪽: 무엇을 맡은 일인가 */}
-      <div className="lg:sticky lg:top-24 lg:self-start">
-        <div className="flex items-baseline gap-3">
-          <span className="font-mono text-sm text-accent-dim">
-            {String(no).padStart(2, "0")}
-          </span>
-          <span className="eyebrow">{meta}</span>
-        </div>
+  kind: "연구" | "서비스";
+  name: string;
+  title: string;
+  hook: string;
+  meta: string;
+  figure?: Figure;
+  metrics: { label: string; value: string }[];
+};
 
-        <h3 className="mt-3 font-mono text-lg text-accent">{name}</h3>
-        <p className="mt-2 text-lg font-medium leading-snug tracking-tight">
-          {headline}
-        </p>
-        {sub && (
-          <p className="mt-2 text-xs leading-relaxed text-muted-dim">{sub}</p>
-        )}
-
-        {roleLine && (
-          <div className="mt-4">
-            <p className="eyebrow">맡은 부분</p>
-            <p className="mt-1.5 text-sm leading-relaxed text-muted">{roleLine}</p>
-          </div>
-        )}
-
-        {achievement && (
-          <p className="mt-4 rounded border border-accent-dim px-3 py-2 text-xs leading-relaxed text-accent">
-            {achievement}
-          </p>
-        )}
-
-        <div className="mt-4">
-          <TagList items={tags.slice(0, 5)} />
-        </div>
-
-        <Link href={href} className="btn mt-5">
-          자세히 보기
-          <span className="arrow" aria-hidden>
-            →
-          </span>
-        </Link>
-      </div>
-
-      {/* 오른쪽: 문제 · 접근 · 결과 */}
-      <div>
-        {/* 목록에서는 그림만 보여줍니다. 설명은 상세 페이지가 맡습니다. */}
-        {figure && (
-          <div className="rounded-lg border border-line bg-white p-2">
-            <Image
-              src={figure.src}
-              alt={figure.alt}
-              width={figure.width ?? 1600}
-              height={figure.height ?? 900}
-              className="mx-auto h-auto max-h-64 w-auto max-w-full"
-              sizes="(min-width: 1024px) 640px, 100vw"
-            />
-          </div>
-        )}
-
-        <div className={figure ? "mt-6" : ""}>
-          <p className="eyebrow">문제</p>
-          <p className="mt-2 leading-relaxed text-muted">
-            {clamp(problem, 2)}
-          </p>
-        </div>
-
-        <div className="mt-6">
-          <p className="eyebrow">접근</p>
-          <ol className="mt-3 space-y-4">
-            {approach.map((a, i) => (
-              <li key={a.name} className="grid gap-1 sm:grid-cols-[2rem_1fr]">
-                <span className="font-mono text-xs text-muted-dim sm:pt-1">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <p className="font-medium">{a.name}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted">
-                    {a.detail}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <div className="mt-6">
-          <p className="eyebrow">결과</p>
-          <div className="mt-2">
-            <MetricGrid metrics={metrics} />
-          </div>
-          <p className="mt-3 leading-relaxed text-muted">{clamp(outcome, 1)}</p>
-        </div>
-      </div>
-    </article>
-  );
-}
-
-/** 목록에서는 정지 이미지만 쓴다. 동영상은 상세 페이지에서 재생된다. */
-function listFigure(figures: Paper["figures"]) {
+/** 목록에서는 정지 이미지만 씁니다. 동영상은 상세 페이지에서 재생됩니다. */
+function listFigure(figures: Figure[]) {
   for (const figure of figures) {
     const still = stillImage(figure);
     if (still) return { ...figure, src: still };
@@ -281,44 +30,177 @@ function listFigure(figures: Paper["figures"]) {
   return undefined;
 }
 
-function PaperBlock({ paper, no }: { paper: Paper; no: number }) {
-  const figure = listFigure(paper.figures);
-  const achievement = [paper.venueLabel, paper.citation].filter(Boolean).join(" · ");
+function fromPaper(p: Paper): Item {
+  return {
+    slug: p.slug,
+    href: `/research/${p.slug}`,
+    kind: "연구",
+    name: p.shortTitle,
+    title: p.koreanTitle,
+    hook: p.hook,
+    meta: `${p.venueLabel} · ${p.role} · ${p.year}`,
+    figure: listFigure(p.figures),
+    metrics: p.metrics,
+  };
+}
+
+function fromProject(p: Project): Item {
+  return {
+    slug: p.slug,
+    href: `/projects/${p.slug}`,
+    kind: "서비스",
+    name: p.name,
+    title: p.tagline,
+    hook: p.hook,
+    meta: `${p.context} · ${p.status}`,
+    figure: listFigure(p.figures),
+    metrics: p.metrics,
+  };
+}
+
+// 대표 넷은 연구와 서비스가 번갈아 나오게 둡니다.
+const FEATURED_ORDER = ["cova-mtl", "ieum", "prism-mtl", "talktalk-design"];
+
+export default function Home() {
+  const all = [...papers.map(fromPaper), ...projects.map(fromProject)];
+  const featured = FEATURED_ORDER.map((slug) => all.find((i) => i.slug === slug)).filter(
+    (i): i is Item => Boolean(i),
+  );
+  const otherResearch = papers.filter((p) => !p.featured).map(fromPaper);
+  const otherProjects = projects.filter((p) => !p.featured).map(fromProject);
+
   return (
-    <BlockShell
-      no={no}
-      meta={`${paper.axis} · ${paper.year} · ${paper.role}`}
-      name={paper.shortTitle}
-      headline={paper.koreanTitle}
-      sub={paper.title}
-      figure={figure}
-      problem={paper.problem}
-      approach={paper.approach}
-      metrics={paper.metrics}
-      outcome={paper.outcome}
-      achievement={achievement}
-      tags={paper.keywords}
-      href={`/research/${paper.slug}`}
-    />
+    <>
+      <Intro />
+
+      <section id="featured" className="mx-auto max-w-5xl px-6 pt-4">
+        <h2 className="section-title">대표 프로젝트</h2>
+        <div className="mt-6 grid gap-6 md:grid-cols-2">
+          {featured.map((item) => (
+            <FeaturedCard key={item.slug} item={item} />
+          ))}
+        </div>
+      </section>
+
+      <OtherList id="research" title="그 외 연구" items={otherResearch} />
+      <OtherList id="projects" title="그 외 개발 프로젝트" items={otherProjects} />
+    </>
   );
 }
 
-function ProjectBlock({ project, no }: { project: Project; no: number }) {
-  const figure = listFigure(project.figures);
+function Intro() {
+  const published = papers.filter((p) => p.status === "published");
+  const sci = published.filter((p) => p.venueLabel.includes("SCI")).length;
+  const kci = published.length - sci;
+  const review = papers.filter((p) => p.status === "under-review").length;
+
   return (
-    <BlockShell
-      no={no}
-      meta={`${project.context} · ${project.period} · ${project.status}`}
-      roleLine={project.role}
-      name={project.name}
-      headline={project.tagline}
-      figure={figure}
-      problem={project.problem}
-      approach={project.approach}
-      metrics={project.metrics}
-      outcome={project.outcome}
-      tags={project.stack}
-      href={`/projects/${project.slug}`}
-    />
+    <section className="mx-auto max-w-5xl px-6 pt-16 pb-12 sm:pt-20">
+      <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+        {profile.nameKo}
+        <span className="ml-3 text-xl font-medium text-muted sm:text-2xl">{profile.role}</span>
+      </h1>
+      <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted">{profile.tagline}</p>
+
+      <div className="mt-6 flex flex-wrap items-center gap-3">
+        <Link href="/resume" className="btn btn-primary">
+          이력서 보기
+          <span className="arrow" aria-hidden>
+            →
+          </span>
+        </Link>
+        <a href={`mailto:${profile.contact.email}`} className="btn">
+          {profile.contact.email}
+        </a>
+      </div>
+
+      <p className="mt-6 text-sm text-muted-dim">
+        SCI(E) 논문 {sci}편 게재 · {review}편 심사 중
+        {kci > 0 && ` · KCI ${kci}편 게재`}
+      </p>
+    </section>
+  );
+}
+
+function FeaturedCard({ item }: { item: Item }) {
+  return (
+    <Link id={item.slug} href={item.href} className="card-link group flex flex-col">
+      <div className="flex flex-wrap items-center gap-2 text-xs">
+        <span className={item.kind === "연구" ? "kind kind-research" : "kind kind-service"}>
+          {item.kind}
+        </span>
+        <span className="text-muted-dim">{item.meta}</span>
+      </div>
+
+      {/* 채용 담당자가 가장 먼저 읽는 자리. 무엇이 안 됐는지를 가장 크게 씁니다. */}
+      <p className="mt-4 text-[1.2rem] font-semibold leading-snug tracking-tight sm:text-[1.3rem]">
+        {item.hook}
+      </p>
+
+      <p className="mt-3 text-sm leading-relaxed text-muted">
+        <span className="font-mono font-medium text-accent">{item.name}</span>
+        <span className="mx-1.5 text-muted-dim">—</span>
+        {item.title}
+      </p>
+
+      {item.figure && (
+        <div className="relative mt-5 aspect-[16/9] overflow-hidden rounded-lg border border-line-soft bg-white">
+          <Image
+            src={item.figure.src}
+            alt={item.figure.alt}
+            fill
+            className="object-contain p-2"
+            sizes="(min-width: 768px) 460px, 100vw"
+          />
+        </div>
+      )}
+
+      <dl className="mt-5 grid grid-cols-3 gap-2">
+        {item.metrics.slice(0, 3).map((m) => (
+          <div key={m.label} className="rounded-md bg-ink-soft px-3 py-2.5">
+            <dt className="text-[0.7rem] leading-tight text-muted-dim">{m.label}</dt>
+            <dd className="mt-1 text-sm font-semibold leading-snug text-paper">{m.value}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <span className="mt-auto flex items-center gap-2 pt-5 text-sm font-medium text-accent">
+        자세히 보기
+        <span className="arrow" aria-hidden>
+          →
+        </span>
+      </span>
+    </Link>
+  );
+}
+
+function OtherList({ id, title, items }: { id: string; title: string; items: Item[] }) {
+  if (items.length === 0) return null;
+  return (
+    <section id={id} className="mx-auto max-w-5xl px-6 pt-16">
+      <h2 className="section-title">{title}</h2>
+      <ul className="mt-5 overflow-hidden rounded-xl border border-line bg-ink-card">
+        {items.map((item) => (
+          <li key={item.slug} id={item.slug} className="border-b border-line-soft last:border-b-0">
+            <Link
+              href={item.href}
+              className="group grid gap-1 px-5 py-4 transition-colors hover:bg-ink-soft sm:grid-cols-[9.5rem_1fr_auto] sm:items-center sm:gap-6"
+            >
+              <span className="font-mono text-sm font-medium text-accent">{item.name}</span>
+              <span>
+                <span className="block font-medium leading-snug">{item.hook}</span>
+                <span className="mt-1 block text-xs text-muted-dim">{item.meta}</span>
+              </span>
+              <span
+                className="arrow hidden text-muted-dim group-hover:text-accent sm:block"
+                aria-hidden
+              >
+                →
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }

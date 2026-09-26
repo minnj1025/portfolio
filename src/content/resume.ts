@@ -96,7 +96,7 @@ export const awards: Award[] = [
     date: "2024.12",
     name: "조선대학교 종합학술대회 금상",
     org: "조선대학교 IT융합대학",
-    note: "Talktalk deSign — 실시간 수어 번역 시스템",
+    note: "Talktalk deSign — 수어 번역 시스템",
   },
   {
     date: "2024.10",
