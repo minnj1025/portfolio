@@ -11,7 +11,7 @@ export default function Home() {
     <>
       <Hero />
       <Disciplines />
-      <Pillars />
+      <Highlights />
 
       <Section
         id="research"
@@ -80,26 +80,28 @@ function Disciplines() {
   );
 }
 
-function Pillars() {
+function Highlights() {
   return (
     <section className="mx-auto max-w-5xl px-6 pt-16">
-      <div className="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-3">
-        {profile.pillars.map((p) => (
-          <div key={p.no} className="flex flex-col bg-ink-card p-6">
-            <span className="font-mono text-xs text-accent-dim">{p.no}</span>
-            <h3 className="mt-3 text-lg font-medium tracking-tight">{p.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted">{p.detail}</p>
-            <ul className="mt-5 space-y-1.5 border-t border-line-soft pt-4">
-              {p.evidence.map((e) => (
-                <li
-                  key={e}
-                  className="font-mono text-xs leading-relaxed text-muted-dim"
-                >
-                  {e}
-                </li>
-              ))}
-            </ul>
-          </div>
+      <p className="eyebrow">대표 성과</p>
+      <div className="mt-4 grid gap-4 sm:grid-cols-3">
+        {profile.highlights.map((h) => (
+          <Link key={h.name} href={h.href} className="card-link flex flex-col">
+            <p className="eyebrow">
+              {h.kind} — {h.meta}
+            </p>
+            <h3 className="mt-3 font-mono text-lg text-accent">{h.name}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted">{h.detail}</p>
+            <p className="mt-auto pt-5 font-mono text-xs text-paper">
+              {h.metric}
+            </p>
+            <span className="mt-4 flex items-center gap-2 border-t border-line-soft pt-4 text-xs text-muted-dim">
+              자세히 보기
+              <span className="arrow" aria-hidden>
+                →
+              </span>
+            </span>
+          </Link>
         ))}
       </div>
     </section>

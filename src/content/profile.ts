@@ -20,28 +20,34 @@ export const profile = {
     "EVALUATION DESIGN",
     "EDGE DEPLOYMENT",
   ],
-  pillars: [
+  /**
+   * 상단에 먼저 내미는 대표 작업 셋. 게재된 연구 하나, 가장 최근 연구 하나,
+   * 개발 하나로 잡아 한쪽으로 쏠리지 않게 합니다. 카드를 누르면 상세로 갑니다.
+   */
+  highlights: [
     {
-      no: "01",
-      title: "데이터에서 시작한다",
-      detail: "성능이 안 나오면 모델보다 데이터를 먼저 봅니다.",
-      evidence: [
-        "졸음 라벨 3단계 → 97.75%",
-        "영상 → 골격 좌표",
-        "본문 설명 → 상황 문장",
-      ],
+      kind: "연구",
+      meta: "Neurocomputing (SCIE) 심사 중",
+      name: "COVA-MTL",
+      detail: "쓸 모달리티를 먼저 고르게 해서, 정확도를 지키며 연산을 줄였습니다.",
+      metric: "branch 비용 −22.22%",
+      href: "/research/cova-mtl",
     },
     {
-      no: "02",
-      title: "필요한 것만 골라 엮는다",
-      detail: "다 넣으면 태스크끼리 간섭합니다. 쓸 것만 고르게 만듭니다.",
-      evidence: ["5 모달리티 → 4 태스크", "태스크별 선택 융합", "공유 인코더"],
+      kind: "연구",
+      meta: "Mathematics (SCIE) 게재",
+      name: "PRISM-MTL",
+      detail: "태스크마다 필요한 모달리티만 골라 융합해 간섭을 줄였습니다.",
+      metric: "AIDE mAcc 86.25% · SOTA",
+      href: "/research/prism-mtl",
     },
     {
-      no: "03",
-      title: "실제 환경에서 돌아가게 한다",
-      detail: "정확도에서 끝내지 않고, 돌아가는 곳까지 봅니다.",
-      evidence: ["경량 백본 3.42M", "센서 결손 추론", "라즈베리파이 실시간"],
+      kind: "개발",
+      meta: "개인 프로젝트 · 진행 중",
+      name: "이음",
+      detail: "일기에서 필요한 것을 읽어내 성경 본문을 찾아주는 앱입니다.",
+      metric: "판별 마진 0.169 → 0.268",
+      href: "/projects/ieum",
     },
   ],
   contact: {
