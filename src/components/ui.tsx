@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { isVideo, type Figure } from "@/content/types";
+import { isVideo, type Approach, type Figure } from "@/content/types";
 
 export function Section({
   id,
@@ -72,7 +72,7 @@ export function CaseBody({
   figures,
 }: {
   problem: string;
-  approach: { name: string; tag?: string; detail: string }[];
+  approach: Approach[];
   metrics: { label: string; value: string }[];
   outcome: string;
   figures: Figure[];
@@ -100,6 +100,11 @@ export function CaseBody({
                   )}
                 </h4>
                 <p className="mt-2 leading-loose text-muted">{a.detail}</p>
+                {a.depth && (
+                  <p className="mt-3 border-l border-line-soft pl-4 text-sm leading-loose text-muted-dim">
+                    {a.depth}
+                  </p>
+                )}
               </div>
             </li>
           ))}

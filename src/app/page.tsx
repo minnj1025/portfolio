@@ -3,7 +3,7 @@ import Image from "next/image";
 import { profile } from "@/content/profile";
 import { papers } from "@/content/papers";
 import { projects } from "@/content/projects";
-import { stillImage, type Paper, type Project } from "@/content/types";
+import { stillImage, type Approach, type Paper, type Project } from "@/content/types";
 import { MetricGrid, TagList } from "@/components/ui";
 
 export default function Home() {
@@ -159,7 +159,7 @@ function BlockShell({
   sub?: string;
   figure?: { src: string; alt: string; width?: number; height?: number };
   problem: string;
-  approach: { name: string; tag?: string; detail: string }[];
+  approach: Approach[];
   metrics: { label: string; value: string }[];
   outcome: string;
   achievement?: string;
@@ -236,7 +236,7 @@ function BlockShell({
                 <div>
                   <p className="font-medium">{a.name}</p>
                   <p className="mt-1 text-sm leading-relaxed text-muted">
-                    {clamp(a.detail, 2)}
+                    {a.detail}
                   </p>
                 </div>
               </li>

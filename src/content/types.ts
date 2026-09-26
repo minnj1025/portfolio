@@ -1,3 +1,12 @@
+export type Approach = {
+  name: string;
+  tag?: string;
+  /** 한두 문장 요약. 목록 카드와 상세 페이지 모두에 나갑니다. */
+  detail: string;
+  /** 상세 페이지에서만 이어 붙는 설명. 메커니즘과 설계 근거를 적습니다. */
+  depth?: string;
+};
+
 export type PaperStatus = "published" | "under-review";
 
 export type Figure = {
@@ -48,7 +57,7 @@ export type Paper = {
    * 어떻게 풀었는가. name은 컴포넌트 이름이 아니라 한 일을 적습니다.
    * 논문에 붙은 약어는 tag로 따로 답니다.
    */
-  approach: { name: string; tag?: string; detail: string }[];
+  approach: Approach[];
   /** 정량 결과. 카드 하단 지표 줄에도 쓰입니다. */
   metrics: { label: string; value: string }[];
   /** 결과 서술 */
@@ -68,7 +77,7 @@ export type Project = {
   role: string;
   status: "운영 중" | "개발 중" | "완료";
   problem: string;
-  approach: { name: string; tag?: string; detail: string }[];
+  approach: Approach[];
   metrics: { label: string; value: string }[];
   outcome: string;
   stack: string[];
