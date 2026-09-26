@@ -45,13 +45,13 @@ export default function Resume() {
           </p>
         </div>
 
-        {/* 원본이 472px이라 Next가 640px로 늘리면 오히려 뭉개집니다.
-            원본 그대로 내보내 표시 크기 대비 3배 밀도를 유지합니다. */}
+        {/* 표시 폭이 144px이라 480px로 한 번만 줄여 내보냅니다. Next에 다시
+            맡기면 두 번 압축돼 뭉개지므로 unoptimized로 원본을 그대로 씁니다. */}
         <Image
           src="/profile.jpg"
           alt={`${profile.nameKo} 프로필 사진`}
-          width={472}
-          height={630}
+          width={480}
+          height={640}
           priority
           unoptimized
           className="h-40 w-30 shrink-0 rounded-lg border border-line object-cover sm:h-48 sm:w-36"
