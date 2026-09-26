@@ -67,7 +67,7 @@ function Disciplines() {
   const loop = [...profile.disciplines, ...profile.disciplines];
   return (
     <section className="rule border-b border-line-soft py-6">
-      <p className="eyebrow mx-auto max-w-5xl px-6">다루는 것</p>
+      <p className="eyebrow mx-auto max-w-5xl px-6">Focus areas</p>
       <div className="marquee mt-4">
         <div className="marquee-track">
           {loop.map((item, i) => (
