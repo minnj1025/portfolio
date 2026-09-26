@@ -78,16 +78,30 @@ body {
   }
 }
 
+/*
+ * 움직임을 줄여달라는 설정에서는 흐르게 두지 않습니다. 대신 잘라내거나
+ * 옆으로 밀게 하지 않고, 본문 폭 안에서 전부 펼쳐 한눈에 보이게 합니다.
+ */
 @media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow: visible;
+    mask-image: none;
+  }
   .marquee-track {
     animation: none;
+    width: auto;
+    max-width: 64rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+    flex-wrap: wrap;
+    row-gap: 0.75rem;
   }
-  .marquee {
-    /* 애니메이션 대신 직접 밀어 볼 수 있게 하되, 스크롤바는 감춥니다. */
-    overflow-x: auto;
-    scrollbar-width: none;
+  /* 두 번째 벌은 이음매를 감추려고 깐 것이라 펼칠 때는 중복입니다. */
+  .marquee-track > [aria-hidden="true"] {
+    display: none;
   }
-  .marquee::-webkit-scrollbar {
+  /* 흐르지 않으니 마지막 구분자는 갈 곳이 없습니다. */
+  .marquee-track > span:has(+ [aria-hidden="true"]) .sep {
     display: none;
   }
 }

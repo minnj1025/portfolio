@@ -71,7 +71,7 @@ function Disciplines() {
               className="flex shrink-0 items-center gap-8 pr-8 font-mono text-sm tracking-[0.18em] text-muted-dim"
             >
               {item}
-              <span className="text-accent-dim">/</span>
+              <span className="sep text-accent-dim">/</span>
             </span>
           ))}
         </div>
