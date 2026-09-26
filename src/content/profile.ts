@@ -21,29 +21,26 @@ export const profile = {
     "EDGE DEPLOYMENT",
   ],
   /**
-   * 상단에 먼저 내미는 대표 작업 셋. 게재된 연구 하나, 가장 최근 연구 하나,
-   * 개발 하나로 잡아 한쪽으로 쏠리지 않게 합니다. 카드를 누르면 상세로 갑니다.
+   * 상단에 먼저 내미는 대표 프로젝트 셋. 게재 여부 대신 무엇을 다룬 일인지를
+   * 앞세웁니다. 학회명은 각 상세 페이지에 있습니다.
    */
   highlights: [
     {
-      kind: "연구",
-      meta: "Neurocomputing (SCIE) 심사 중",
+      focus: "MODALITY SELECTION · EFFICIENCY",
       name: "COVA-MTL",
       detail: "쓸 모달리티를 먼저 고르게 해서, 정확도를 지키며 연산을 줄였습니다.",
       metric: "branch 비용 −22.22%",
       href: "/research/cova-mtl",
     },
     {
-      kind: "연구",
-      meta: "Mathematics (SCIE) 게재",
+      focus: "SELECTIVE FUSION · TASK INTERFERENCE",
       name: "PRISM-MTL",
       detail: "태스크마다 필요한 모달리티만 골라 융합해 간섭을 줄였습니다.",
-      metric: "AIDE mAcc 86.25% · SOTA",
+      metric: "AIDE mAcc 86.25%",
       href: "/research/prism-mtl",
     },
     {
-      kind: "개발",
-      meta: "개인 프로젝트 · 진행 중",
+      focus: "RETRIEVAL · LLM PIPELINE",
       name: "이음",
       detail: "일기에서 필요한 것을 읽어내 성경 본문을 찾아주는 앱입니다.",
       metric: "판별 마진 0.169 → 0.268",

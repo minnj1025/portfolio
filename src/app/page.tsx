@@ -83,13 +83,11 @@ function Disciplines() {
 function Highlights() {
   return (
     <section className="mx-auto max-w-5xl px-6 pt-16">
-      <p className="eyebrow">대표 성과</p>
+      <p className="eyebrow">대표 프로젝트</p>
       <div className="mt-4 grid gap-4 sm:grid-cols-3">
         {profile.highlights.map((h) => (
           <Link key={h.name} href={h.href} className="card-link flex flex-col">
-            <p className="eyebrow">
-              {h.kind} — {h.meta}
-            </p>
+            <p className="eyebrow leading-relaxed">{h.focus}</p>
             <h3 className="mt-3 font-mono text-lg text-accent">{h.name}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted">{h.detail}</p>
             <p className="mt-auto pt-5 font-mono text-xs text-paper">
