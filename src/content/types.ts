@@ -19,6 +19,8 @@ export type Figure = {
   height?: number;
   /** .mp4일 때 목록과 첫 프레임에 쓰는 정지 이미지 */
   poster?: string;
+  /** 목록 카드에 쓸 짧은 설명. 없으면 caption을 그대로 씁니다. */
+  short?: string;
 };
 
 export function isVideo(figure: Figure) {

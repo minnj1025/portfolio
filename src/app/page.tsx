@@ -3,7 +3,13 @@ import Image from "next/image";
 import { profile } from "@/content/profile";
 import { papers } from "@/content/papers";
 import { projects } from "@/content/projects";
-import { stillImage, type Approach, type Paper, type Project } from "@/content/types";
+import {
+  stillImage,
+  type Approach,
+  type Figure,
+  type Paper,
+  type Project,
+} from "@/content/types";
 import { MetricGrid, TagList } from "@/components/ui";
 
 export default function Home() {
@@ -157,7 +163,7 @@ function BlockShell({
   name: string;
   headline: string;
   sub?: string;
-  figure?: { src: string; alt: string; width?: number; height?: number };
+  figure?: Figure;
   problem: string;
   approach: Approach[];
   metrics: { label: string; value: string }[];
@@ -206,16 +212,22 @@ function BlockShell({
       {/* 오른쪽: 문제 · 접근 · 결과 */}
       <div>
         {figure && (
-          <div className="rounded-lg border border-line bg-white p-2">
-            <Image
-              src={figure.src}
-              alt={figure.alt}
-              width={figure.width ?? 1600}
-              height={figure.height ?? 900}
-              className="mx-auto h-auto max-h-64 w-auto max-w-full"
-              sizes="(min-width: 1024px) 640px, 100vw"
-            />
-          </div>
+          <figure>
+            <div className="rounded-lg border border-line bg-white p-2">
+              <Image
+                src={figure.src}
+                alt={figure.alt}
+                width={figure.width ?? 1600}
+                height={figure.height ?? 900}
+                className="mx-auto h-auto max-h-64 w-auto max-w-full"
+                sizes="(min-width: 1024px) 640px, 100vw"
+              />
+            </div>
+            {/* 긴 캡션을 가진 그림은 short로 한 줄 설명을 따로 답니다. */}
+            <figcaption className="mt-2.5 text-xs leading-relaxed text-muted-dim">
+              {figure.short ?? figure.caption}
+            </figcaption>
+          </figure>
         )}
 
         <div className={figure ? "mt-6" : ""}>
