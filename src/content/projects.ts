@@ -235,7 +235,7 @@ export const projects: Project[] = [
     outcome:
       "KSL-77 중 67개 단어, 20명 데이터에서 검증 정확도 94.73%를 얻고 녹화부터 음성 출력까지 시연해 2024 조선대학교 종합학술대회 금상을 받았습니다. 다만 이 수치는 같은 영상의 프레임이 학습과 검증에 섞인 기준이었고, 직접 촬영한 영상에서는 41.82%였습니다. 지금은 영상 단위로 다시 설계해 브라우저에서 바로 쓰는 서비스로 다시 만들고 있습니다.",
     stack: ["MediaPipe", "PyTorch", "Graph Convolution", "Raspberry Pi 4", "Google TTS"],
-    links: [],
+    links: [{ label: "재개발판 바로 써보기", href: "https://talktalk-design.vercel.app/" }],
     figures: [
       {
         src: "/figures/talktalk-flow.png",
