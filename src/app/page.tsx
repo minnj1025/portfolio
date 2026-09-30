@@ -7,7 +7,7 @@ import { stillImage, type Figure, type Paper, type Project } from "@/content/typ
 
 /**
  * 논문과 개발 프로젝트를 한 모양으로 맞춘 카드 데이터.
- * 첫 화면은 "무엇이 문제였나"가 먼저 읽히도록 hook을 가장 크게 띄웁니다.
+ * 첫 화면은 제목이 가장 크게 읽히고, 무엇이 문제였는지는 상세 페이지에서 보여 줍니다.
  */
 type Item = {
   slug: string;
@@ -15,10 +15,10 @@ type Item = {
   kind: "연구" | "서비스";
   name: string;
   title: string;
-  hook: string;
   meta: string;
   figure?: Figure;
   metrics: { label: string; value: string }[];
+  demo?: string;
 };
 
 /** 목록에서는 정지 이미지만 씁니다. 동영상은 상세 페이지에서 재생됩니다. */
@@ -37,7 +37,6 @@ function fromPaper(p: Paper): Item {
     kind: "연구",
     name: p.shortTitle,
     title: p.koreanTitle,
-    hook: p.hook,
     meta: `${p.venueLabel} · ${p.role} · ${p.year}`,
     figure: listFigure(p.figures),
     metrics: p.metrics,
@@ -51,10 +50,10 @@ function fromProject(p: Project): Item {
     kind: "서비스",
     name: p.name,
     title: p.tagline,
-    hook: p.hook,
     meta: `${p.context} · ${p.status}`,
     figure: listFigure(p.figures),
     metrics: p.metrics,
+    demo: p.demo,
   };
 }
 
@@ -123,8 +122,11 @@ function Intro() {
 }
 
 function FeaturedCard({ item }: { item: Item }) {
+  // 카드 전체가 상세 페이지로 가는 링크이고, "바로 써보기"만 그 위에 따로 떠 있습니다.
+  // <a> 안에 <a>를 넣을 수 없어서 상세 링크를 카드 전체를 덮는 층으로 깔았습니다.
   return (
-    <Link id={item.slug} href={item.href} className="card-link group flex flex-col">
+    <div id={item.slug} className="card-link group relative flex flex-col">
+      <Link href={item.href} className="absolute inset-0 rounded-xl" aria-label={`${item.name} 자세히 보기`} />
       <div className="flex flex-wrap items-center gap-2 text-xs">
         <span className={item.kind === "연구" ? "kind kind-research" : "kind kind-service"}>
           {item.kind}
@@ -132,14 +134,8 @@ function FeaturedCard({ item }: { item: Item }) {
         <span className="text-muted-dim">{item.meta}</span>
       </div>
 
-      {/* 채용 담당자가 가장 먼저 읽는 자리. 무엇이 안 됐는지를 가장 크게 씁니다. */}
-      <p className="mt-4 text-[1.2rem] font-semibold leading-snug tracking-tight sm:text-[1.3rem]">
-        {item.hook}
-      </p>
-
-      <p className="mt-3 text-sm leading-relaxed text-muted">
-        <span className="font-mono font-medium text-accent">{item.name}</span>
-        <span className="mx-1.5 text-muted-dim">—</span>
+      <p className="mt-4 font-mono text-sm font-medium text-accent">{item.name}</p>
+      <p className="mt-1.5 text-[1.2rem] font-semibold leading-snug tracking-tight sm:text-[1.3rem]">
         {item.title}
       </p>
 
@@ -164,13 +160,21 @@ function FeaturedCard({ item }: { item: Item }) {
         ))}
       </dl>
 
-      <span className="mt-auto flex items-center gap-2 pt-5 text-sm font-medium text-accent">
-        자세히 보기
-        <span className="arrow" aria-hidden>
-          →
+      <div className="mt-auto flex items-center justify-between gap-3 pt-5">
+        <span className="flex items-center gap-2 text-sm font-medium text-accent">
+          자세히 보기
+          <span className="arrow" aria-hidden>
+            →
+          </span>
         </span>
-      </span>
-    </Link>
+        {item.demo && (
+          <a href={item.demo} target="_blank" rel="noreferrer" className="btn btn-primary relative">
+            바로 써보기
+            <span aria-hidden>↗</span>
+          </a>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -188,7 +192,7 @@ function OtherList({ id, title, items }: { id: string; title: string; items: Ite
             >
               <span className="font-mono text-sm font-medium text-accent">{item.name}</span>
               <span>
-                <span className="block font-medium leading-snug">{item.hook}</span>
+                <span className="block font-medium leading-snug">{item.title}</span>
                 <span className="mt-1 block text-xs text-muted-dim">{item.meta}</span>
               </span>
               <span

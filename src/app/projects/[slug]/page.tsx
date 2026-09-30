@@ -46,6 +46,13 @@ export default async function ProjectDetail({ params }: Props) {
           <dd className="text-muted">{project.status}</dd>
         </dl>
 
+        {project.demo && (
+          <a href={project.demo} target="_blank" rel="noreferrer" className="btn btn-primary mt-8">
+            바로 써보기
+            <span aria-hidden>↗</span>
+          </a>
+        )}
+
         {project.links.length > 0 && (
           <div className="mt-6 flex flex-wrap gap-4">
             {project.links.map((l) => (

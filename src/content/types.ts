@@ -90,6 +90,8 @@ export type Project = {
   outcome: string;
   stack: string[];
   links: { label: string; href: string }[];
+  /** 지금 바로 써볼 수 있는 서비스 주소. 있으면 카드와 상세 페이지에 "바로 써보기" 버튼이 붙습니다. */
+  demo?: string;
   figures: Figure[];
   featured?: boolean;
 };
