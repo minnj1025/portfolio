@@ -57,8 +57,8 @@ function fromProject(p: Project): Item {
   };
 }
 
-// 대표 넷은 연구와 서비스가 번갈아 나오게 둡니다.
-const FEATURED_ORDER = ["cova-mtl", "ieum", "prism-mtl", "talktalk-design"];
+// 대표 여섯은 연구와 서비스가 번갈아 나오게 둡니다.
+const FEATURED_ORDER = ["cova-mtl", "ieum", "prism-mtl", "talktalk-design", "muse-mtl", "magarin"];
 
 export default function Home() {
   const all = [...papers.map(fromPaper), ...projects.map(fromProject)];

@@ -415,6 +415,7 @@ export const projects: Project[] = [
         height: 750,
       },
     ],
+    featured: true,
   },
   {
     slug: "news-screening",

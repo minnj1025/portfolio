@@ -310,6 +310,7 @@ export const papers: Paper[] = [
         narrow: true,
       },
     ],
+    featured: true,
   },
   {
     slug: "prism-mtl",
